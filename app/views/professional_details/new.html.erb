@@ -1,0 +1,28 @@
+
+<h3>Fill The Professional Details</h3>
+
+<%= form_with model: @professional_detail, url: employee_professional_details_path, local: true do |form| %>
+  <div id= "content">
+    <div id='input-div'>
+      <%= form.label "Name" %>
+      <%= form.text_field "acadmic_details[][name]" %>
+      <%= form.label "Value" %>
+      <%= form.text_field "acadmic_details[][value]" %>      
+    </div>
+  </div>
+  <p>
+    <%= form.label :Total_Experience%><br>
+    <%= form.text_field :total_experience %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+<button class="button" onclick="myFunction()"> ADD </button>
+
+<script>
+  function myFunction() {
+    $("#input-div").clone().appendTo("#content");
+    $(".content").removeClass("hide");
+  }
+</script>

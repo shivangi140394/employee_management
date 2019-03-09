@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>Employee</title>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+    <%= render "layouts/header" %>    
+    <% flash.each do |key, value| %>
+      <div class="message">
+        <div class="alert-message <%= key %> fade in">
+          <a class="close" href="#">&times</a>
+          <center><strong><%= value %></strong></center>
+       </div>
+      </div>
+    <% end %>  
+    <%= yield %>
+  </body>
+</html>
