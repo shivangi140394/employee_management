@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_06_135247) do
+ActiveRecord::Schema.define(version: 2019_03_11_104951) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,12 @@ ActiveRecord::Schema.define(version: 2019_03_06_135247) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "employee_id"
+  end
+
+  create_table "attachments", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "bank_details", force: :cascade do |t|
@@ -60,12 +66,21 @@ ActiveRecord::Schema.define(version: 2019_03_06_135247) do
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
   end
 
+  create_table "images", force: :cascade do |t|
+    t.string "imageable_type"
+    t.bigint "imageable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id"
+  end
+
   create_table "professional_details", force: :cascade do |t|
-    t.jsonb "acadmic_details", default: {}, null: false
     t.integer "total_experience"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "employee_id"
+    t.string "name"
   end
 
   create_table "roles", force: :cascade do |t|

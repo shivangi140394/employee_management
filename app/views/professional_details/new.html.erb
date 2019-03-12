@@ -1,28 +1,20 @@
+<h3>Fill The address Details</h3>
 
-<h3>Fill The Professional Details</h3>
-
-<%= form_with model: @professional_detail, url: employee_professional_details_path, local: true do |form| %>
-  <div id= "content">
-    <div id='input-div'>
-      <%= form.label "Name" %>
-      <%= form.text_field "acadmic_details[][name]" %>
-      <%= form.label "Value" %>
-      <%= form.text_field "acadmic_details[][value]" %>      
-    </div>
-  </div>
+ <%= form_for @professional_detail, :url =>  employee_professional_details_path, method: :post do |form| %>
   <p>
-    <%= form.label :Total_Experience%><br>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+  <p>
+    <%= form.label :total %><br>
     <%= form.text_field :total_experience %>
   </p>
+    <%= form.fields_for :images do |fd| %>
+        <%= fd.label :name %><br />
+        <%= fd.file_field :name %>
+    <%end%>
   <p>
     <%= form.submit %>
   </p>
 <% end %>
-<button class="button" onclick="myFunction()"> ADD </button>
-
-<script>
-  function myFunction() {
-    $("#input-div").clone().appendTo("#content");
-    $(".content").removeClass("hide");
-  }
-</script>
+<!-- , multiple: true -->

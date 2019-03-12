@@ -5,17 +5,18 @@ Rails.application.routes.draw do
   root to: "home#index"
   
   resources :employees do
-  resources :addresses , :professional_details
-  resource :bank_detail
+    resources :addresses , :professional_details
+    resource :bank_detail
   end
 
   resources :roles do
-  resources :employee 
+    resources :employee 
   end
 
   resources :designations do
-  resources :employee 
+    resources :employee 
   end
 
+  resources :images
 
 end

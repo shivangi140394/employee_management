@@ -1,0 +1,24 @@
+<% form_for :image,:url =>{:controller => "professional_details",:action => "uploading",:method => :post}, :html => {:multipart => true} do %>
+      <%= file_field :attachment,:uploaded_image %>
+      <%= submit_tag "Upload image" %>
+<% end %> <br />
+ 
+<%= render 'shared/error_img_messages' %>
+ 
+<div style='float:left; width:100%'>
+ 
+<% if @images.size > 0 %>
+
+      <% @images.each do |img|%>
+            <div style='float:left; width:auto; padding: 5px 5px 5px 5px;'>
+               <% var_img = "upload_images/#{img.image_name}" %>
+               <%= image_tag var_img, :height => '140px', :width => '185px' %><br />
+               <a href='/removeimage/<%= img.id%>' onclick='return confirm("Are you sure?");'>Remove</a>
+           </div>
+      <% end %>
+
+<% else %>
+      No images found
+<% end %>
+ 
+</div>

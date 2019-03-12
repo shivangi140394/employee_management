@@ -1,0 +1,2 @@
+module NewEmployeesHelper
+end

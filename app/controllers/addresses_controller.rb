@@ -4,7 +4,6 @@ class AddressesController < ApplicationController
   end
 
   def create
-    
     @address = current_employee.addresses.create(address_params)
     redirect_to root_path
   end
