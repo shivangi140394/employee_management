@@ -1,5 +1,5 @@
 class ProfessionalDetail < ApplicationRecord
-  # belongs_to :employee
+  belongs_to :employee
   has_many :images, as: :imageable
-  accepts_nested_attributes_for :images
+  accepts_nested_attributes_for :images, reject_if: :all_blank, allow_destroy: true
 end

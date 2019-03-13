@@ -1,4 +1,5 @@
 class AddressesController < ApplicationController
+  
   def new
     @address = current_employee.addresses.new 
   end

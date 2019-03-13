@@ -1,0 +1,92 @@
+<h3>Enter the Details </h3>
+  <%= form_for @employee, :url =>  employees_path, method: :post do |f| %>
+    <p>
+      <%= f.label :Name%><br>
+      <%= f.text_field :name %>
+    </p>
+
+    <p>
+      <%= f.label :Phone%><br>
+      <%= f.text_field :phone %>
+    </p>
+
+    <p>
+      <%= f.label :Role %><br>
+      <%= f.number_field :role_id %>
+    </p>
+   
+    <p>
+      <%= f.label :Designation %><br>
+      <%= f.number_field :designation_id %>
+    </p>
+
+    <p>
+      <%= f.label :Email%><br>
+      <%= f.text_field :email %>
+    </p>
+    
+    <div class="field">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+  <h3> Add Bank Details</h3>
+  <%= f.fields_for :bank_detail do |f| %>
+
+    <p>
+      <%= f.label :Account_No %><br>
+      <%= f.text_field :account_no %>
+    </p>
+   
+    <p>
+      <%= f.label :Bank_Name %><br>
+      <%= f.text_field :bank_name %>
+    </p>
+
+    <p>
+      <%= f.label :Branch_name %><br>
+      <%= f.text_field :branch_name %>
+    </p>
+
+    <p>
+      <%= f.label :IFSC_Code %><br>
+      <%= f.text_field :ifsc_code %>
+    </p>
+
+  <%end%>
+
+  <h3>Add Address Details</h3>
+  <div class = "addresses">
+    <%= f.fields_for :addresses do |address| %>
+        <%= render 'address_fields', f: address %>    
+        <div class="link">
+          <h1></h1><%= link_to_add_association 'Add address', f, :addresses %>
+        </div>
+    <%end%>
+  </div>
+  
+  <h3>Add ProfessionalDetails</h3>
+
+  <%= f.fields_for :professional_detail do |f| %>
+    <p>
+      <%= f.label :Total_Experience %><br />
+      <%= f.text_field :total_experience %>
+    </p>
+    <p>
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </p>
+  <%end%>
+  
+  <p>
+    <%= f.submit %>
+  </p>
+
+<%end%>

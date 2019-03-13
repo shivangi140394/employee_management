@@ -21,9 +21,19 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
+   <div class="field">
+    <%= f.label :role %><br />
+    <%= f.password_field :Role %>
+  </div>
+
+   <div class="field">
+    <%= f.label :designation %><br />
+    <%= f.password_field :designation %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
+<%= render :partial => "devise/shared/links" %>
 <% end %>
 
-<%= render "employees/shared/links" %>

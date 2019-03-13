@@ -41,6 +41,7 @@ gem 'devise'
 gem "twitter-bootstrap-rails"
 gem 'pry'
 gem 'carrierwave', '~> 1.0'
+gem "cocoon"
 gem 'jquery-rails'
 
 group :development, :test do
