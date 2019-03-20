@@ -1,0 +1,14 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal">x</button>
+  <h4 class="modal-title" id="myModalLabel">Enter Email</h4>
+</div>
+<div class="modal-body">
+  <%= form_for :user, :url =>  send_email_employee_path(@employee), method: :post, remote: true do |f| %>
+    <p>
+      <%= text_field_tag :email %>
+    </p>
+    <div class="modal-footer">
+      <%= f.submit %>
+    </div>
+    <% end %>
+</div>

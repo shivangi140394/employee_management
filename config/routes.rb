@@ -5,8 +5,18 @@ Rails.application.routes.draw do
   root to: "home#index"
   
   resources :employees do
+    collection do
+      # get 'update_image'
+    end
+    member do
+      post 'send_email'
+    end
     resources :addresses , :professional_details
     resource :bank_detail
+  end
+
+  resources :employee do
+    get :invite
   end
 
   resources :roles do

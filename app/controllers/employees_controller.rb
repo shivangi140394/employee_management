@@ -1,5 +1,5 @@
 class EmployeesController < ApplicationController
-  
+
   def index
     @employees = Employee.all
   end
@@ -14,10 +14,9 @@ class EmployeesController < ApplicationController
 
   def create
     @employee = Employee.create(new_employee_params)
-    if @employee.save
-      EmployeeMailer.welcome_email(@employees).deliver_now
-    end
-    redirect_to root_path
+    unless @employee.save
+      render 'new'
+    end 
   end
 
   def edit
@@ -34,8 +33,14 @@ class EmployeesController < ApplicationController
     redirect_to root_path
   end
 
-  private
-  def new_employee_params
-    params.require(:employee).permit(:role_id, :designation_id, :email, :password, :password_confirmation, :name, :phone)
+  def send_email
+    @employee = Employee.find(params[:id])
+    EmployeeMailer.welcome_email(@employee, params[:email]).deliver_now
+    redirect_to root_path
   end
+
+  private
+    def new_employee_params
+      params.require(:employee).permit(:role_id, :designation_id, :email, :password, :password_confirmation, :name, :phone)
+    end
 end

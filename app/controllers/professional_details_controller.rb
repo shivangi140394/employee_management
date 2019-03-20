@@ -11,7 +11,6 @@ class ProfessionalDetailsController < ApplicationController
 
   def create
     @professional_detail =  ProfessionalDetail.create(professional_detail_params)
-    binding.pry
     redirect_to root_path
   end
 

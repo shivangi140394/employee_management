@@ -5,16 +5,12 @@
    </head>
    
    <body>
-      <h1>Welcome to example.com, <%= @employee.name %></h1>
-      
-      <p>
-         You have successfully signed up to example.com,your username is: 
-         <%= @employee.login %>.<br>
-      </p>
+      <h1>Welcome to Throughout Technologies</h1>
+      <h1>Your Email Id and password is : <%= @employee.email %><br><%= @employee.password %></h1>
       
       <p>
          To login to the site, just follow this link: 
-         <%= @url %>.
+         localhost:3000/employees/sign_in
       </p>
       
       <p>Thanks for joining and have a great day!</p>

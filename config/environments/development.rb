@@ -27,6 +27,7 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  config.serve_static_assets = false
   # Store uploaded files on the local file system (see config/storage.yml for options)
   config.active_storage.service = :local
 
@@ -65,8 +66,8 @@ Rails.application.configure do
    address:              'smtp.gmail.com',
    port:                 587,
    domain:               'gmail.com',
-   user_name:            'sshivangi@throughouttechnologies.com',
-   password:             'sshivi@123',
+   user_name:            'yaduvanshi1992@gmail.com',
+   password:             '8819885710',
    authentication:       'plain',
    enable_starttls_auto: true  
 }

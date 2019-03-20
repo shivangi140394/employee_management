@@ -12,12 +12,12 @@
 
     <p>
       <%= f.label :Role %><br>
-      <%= f.number_field :role_id %>
+      <%= f.text_field :role_id %>
     </p>
    
     <p>
       <%= f.label :Designation %><br>
-      <%= f.number_field :designation_id %>
+      <%= f.text_field :designation_id %>
     </p>
 
     <p>
@@ -37,6 +37,7 @@
       <%= f.label :password_confirmation %><br />
       <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
     </div>
+
   <h3> Add Bank Details</h3>
   <%= f.fields_for :bank_detail do |f| %>
 
@@ -63,30 +64,76 @@
   <%end%>
 
   <h3>Add Address Details</h3>
-  <div class = "addresses">
-    <%= f.fields_for :addresses do |address| %>
-        <%= render 'address_fields', f: address %>    
-        <div class="link">
-          <h1></h1><%= link_to_add_association 'Add address', f, :addresses %>
-        </div>
-    <%end%>
-  </div>
+
+  <%= f.fields_for :address do |f| %>
+
+    <p>
+     <%= f.label :House_No %><br>
+     <%= f.text_field :house_no %>
+    </p>
+ 
+    <p>
+     <%= f.label :Street %><br>
+     <%= f.text_field :street %>
+    </p>
+
+    <p>
+      <%= f.label :Local_address %><br>
+      <%= f.text_field :local_address %>
+    </p>
+
+    <p>
+      <%= f.label :Permanent_address %><br>
+      <%= f.text_field :permanent_address %>
+    </p>
+
+    <p>
+      <%= f.label :City %><br>
+      <%= f.text_field :city %>
+    </p>
+
+    <p>
+      <%= f.label :State %><br>
+      <%= f.text_field :state  %>
+    </p>
+
+    <p>
+      <%= f.label :Pincode %><br>
+      <%= f.text_field :pincode %>
+    </p>
+
+  <%end%>
   
   <h3>Add ProfessionalDetails</h3>
 
   <%= f.fields_for :professional_detail do |f| %>
+
     <p>
       <%= f.label :Total_Experience %><br />
       <%= f.text_field :total_experience %>
     </p>
-    <p>
-      <%= f.label :name %><br />
-      <%= f.text_field :name %>
-    </p>
-  <%end%>
-  
-  <p>
-    <%= f.submit %>
-  </p>
 
+    </div>
+      <div id="imageSet" class ="imagesForm"> 
+        <%= f.fields_for :images do |f| %>
+          <%= f.label :Document %><br />
+          <%= f.file_field :name, multiple: true %>
+        <% end %>
+       </div> 
+      <a href="javascript:;" id="addNewImage">Add Multiple Documents</a> 
+  <%end%>
+    <p>
+      <%= f.submit %>
+    </p>
 <%end%>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $('#addNewImage').click(function(){
+   $('div#imageSet').append('<div class ="imagesForm"><input type="text"class="input-large" placeholder="Caption"><input type="file" multiple= "true" class="input-large" placeholder="Caption">'+ '<button class="removeNewImage" type="button">remove</button></div>');
+    });    
+   $("div#imageSet").on('click', '.removeNewImage', function(){
+   $(this).closest('.imagesForm').remove();
+  });
+});
+</script>
