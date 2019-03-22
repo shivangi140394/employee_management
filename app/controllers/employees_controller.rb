@@ -10,21 +10,28 @@ class EmployeesController < ApplicationController
 
   def new
     @employee = Employee.new
+    # @bd = @employee.build_bank_detail
   end
 
   def create
+    # binding.pry
     @employee = Employee.create(new_employee_params)
+    # redirect_to root_path 
     unless @employee.save
-      render 'new'
+     render 'new'
     end 
   end
 
   def edit
+    @employee = Employee.find_by(id: params[:id])
+    @bank_detail = BankDetail.find_by_id(@employee_id)
+  end
+
+  def update
+    binding.pry
     @employee = Employee.find(params[:id])
-    @bt = @employee.build_bank_detail
-    @pd = @employee.build_professional_detail
-    @address = @employee.addresses.new
-    @image =  @pd.images.new
+    @bank_detail = BankDetail.find(params[:id])
+    redirect_to root_path
   end
 
   def destroy
@@ -40,7 +47,12 @@ class EmployeesController < ApplicationController
   end
 
   private
+
     def new_employee_params
-      params.require(:employee).permit(:role_id, :designation_id, :email, :password, :password_confirmation, :name, :phone)
+      params.require(:employee).permit(:role_id, :designation_id, :email, :password, :password_confirmation, :name, :phone, bank_detail_attributes: [:account_no, :bank_name, :branch_name, :ifsc_code], professional_detail_attributes: [:name, :total_experience, :images_attributes=> [:name]], address_attributes: [:house_no, :street, :local_address, :parmanent_address, :city, :state, :pincode])
     end
+
+    # def method_name
+      
+    # end
 end

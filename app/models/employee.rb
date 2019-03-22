@@ -11,4 +11,5 @@ class Employee < ApplicationRecord
 
   # attr_accessor :email, :password, :password_confirmation, :role_attributes, :designation_attributes
   # accepts_nested_attributes_for :role, :designation
+  accepts_nested_attributes_for :bank_detail
 end

@@ -5,7 +5,7 @@ class BankDetailsController < ApplicationController
   end
 
   def create
-    @bankdetail = current_employee.create_bank_detail(bank_details_params)
+    @bank_detail = current_employee.create_bank_detail(bank_details_params)
     redirect_to root_path
   end
 

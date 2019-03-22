@@ -1,5 +1,5 @@
 <h3>Enter the Details </h3>
-  <%= form_for @employee, :url =>  employees_path, method: :post do |f| %>
+  <%= form_for @employee, :url => employee_path, method: :put do |f| %>
     <p>
       <%= f.label :Name%><br>
       <%= f.text_field :name %>
@@ -38,8 +38,10 @@
       <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
     </div>
 
-  <h3> Add Bank Details</h3>
-  <%= f.fields_for :bank_detail do |f| %>
+
+   <h3> Add Bank Details</h3>
+
+  <%= f.fields_for :bank_details do |f| %>
 
     <p>
       <%= f.label :Account_No %><br>
@@ -60,7 +62,7 @@
       <%= f.label :IFSC_Code %><br>
       <%= f.text_field :ifsc_code %>
     </p>
-
+    
   <%end%>
 
   <h3>Add Address Details</h3>
@@ -101,12 +103,10 @@
       <%= f.label :Pincode %><br>
       <%= f.text_field :pincode %>
     </p>
-
   <%end%>
   
   <h3>Add ProfessionalDetails</h3>
-
-  <%= f.fields_for :professional_detail do |f| %>
+  <%= f.fields_for :professional_detail  do |f| %>
 
     <p>
       <%= f.label :Total_Experience %><br />
@@ -122,18 +122,18 @@
        </div> 
       <a href="javascript:;" id="addNewImage">Add Multiple Documents</a> 
   <%end%>
-    <p>
-      <%= f.submit %>
-    </p>
+  <p>
+    <%= f.submit %>
+  </p>
 <%end%>
 
 <script type="text/javascript">
 $(document).ready(function(){
   $('#addNewImage').click(function(){
-   $('div#imageSet').append('<div class ="imagesForm"><input type="text"class="input-large" placeholder="Caption"><input type="file" multiple= "true" class="input-large" placeholder="Caption">'+ '<button class="removeNewImage" type="button">remove</button></div>');
+    $('div#imageSet').append('<div class ="imagesForm"><input type="text"class="input-large" placeholder="Caption"><input type="file" name="employee[professional_detail][images][name][]" multiple="multiple" class="input-large" placeholder="Caption">'+ '<button class="removeNewImage" type="button">remove</button></div>');
     });    
-   $("div#imageSet").on('click', '.removeNewImage', function(){
-   $(this).closest('.imagesForm').remove();
+    $("div#imageSet").on('click', '.removeNewImage', function(){
+    $(this).closest('.imagesForm').remove();
   });
 });
 </script>
