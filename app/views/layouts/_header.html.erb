@@ -12,17 +12,19 @@
     <div class ="link">
       <ul class="nav navbar-nav navbar-right">
         <% if employee_signed_in? %>
-          <% if current_employee.role_id == 19 %>
+          <% if current_employee.role_id == 52 %>
+            <li><%= link_to('Show Leave', leave_details_path) %></li>
             <li><%= link_to('All Users', employees_path) %></li>
             <li><%= link_to('New_Employee', new_employee_path)%></li>
             <li><%= link_to('Home',root_path) %></li>
             <li><%= link_to "Sign out", destroy_employee_session_path, :method => :delete %></li>
-          <% elsif current_employee.role_id == 20 %>
+          <% elsif current_employee.role_id == 53 %>
             <li><%= link_to('All Users', employees_path) %></li>
             <li><%= link_to('New_Employee', new_employee_path)%></li>
             <li><%= link_to('Home',root_path) %></li>
             <li><%= link_to "Sign out", destroy_employee_session_path, :method => :delete %></li>
           <% else %>
+            <li><%= link_to('Apply Leave',  new_leave_detail_path(current_employee)) %></li>
             <li><%= link_to('Registration', edit_employee_path(current_employee)) %></li>
             <li><%= link_to('Home',root_path) %></li>
             <li><%= link_to "Sign out", destroy_employee_session_path, :method => :delete %></li>

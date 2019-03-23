@@ -27,6 +27,12 @@ Rails.application.routes.draw do
     resources :employee 
   end
 
+  resources :leave_types do
+    resources :leave_details
+  end
+
+  resources :leave_details 
+
   resources :images
 
 end

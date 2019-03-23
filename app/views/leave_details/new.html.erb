@@ -1,0 +1,50 @@
+<%= form_for @leavedetail, :url => leave_details_path, method: :post do |g| %>
+ 
+ <p>
+    <%= g.label :Leave_Type %><br>
+    <%= g.collection_select :leave_type_id, LeaveType.order(:name),:id,:name, include_blank: false %>
+  </p>
+  <p>
+    <%= g.label :Leave_Applied_for_Days %><br>
+    <%= g.text_field :leave_apply_for_days%>
+  </p>
+
+  <p>
+    <%= g.label :Absence_Duration_To %><br>
+    <%= g.datetime_field :absent_to %>
+  </p>
+
+  <p>
+    <%= g.label :Absence_Duration_From %><br>
+    <%= g.datetime_field :absent_from %>
+  </p>
+
+  <p>
+    <%= g.label :Reson_Of_Leave %><br>
+    <%= g.text_area :reason_of_leave %>
+  </p>
+
+  <p>
+    <%= g.label :Work_Affect %><br>
+    <%= g.text_field :work_affect %>
+  </p>
+
+  <p>
+    <%= g.label :Availble_Mobile %><br>
+    <%= g.text_field :avl_mobile %>
+  </p>
+
+  <p>
+    <%= g.label :Available_Email %><br>
+    <%= g.text_field :avl_email%>
+  </p>
+
+  <p>
+    <%= g.label :Status %><br>
+    <%= g.check_box :status, {}, true, false %> <br />
+  </p>
+
+  <%= g.submit %>
+
+<% end %>
+

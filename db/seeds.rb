@@ -17,3 +17,11 @@ Designation.create(name: "IOS_Developer")
 Designation.create(name: "BDE")
 Designation.create(name: "HR")
 
+LeaveType.create(name: "Sick_leave")
+LeaveType.create(name: "Casual_leave")
+LeaveType.create(name: "Earned_leave")
+LeaveType.create(name: "Half_pay_leave")
+LeaveType.create(name: "Maternity_leave")
+LeaveType.create(name: "Quarantine_leave")
+
+

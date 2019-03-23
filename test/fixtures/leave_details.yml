@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  leave_type: MyString
+  leave_apply_for_days: 1
+  absence_duration_to: MyString
+  absence_duration_from: MyString
+  reason_of_leave: MyString
+  avl_mob: 1
+  avl_email: MyString
+  status: MyString
+
+two:
+  leave_type: MyString
+  leave_apply_for_days: 1
+  absence_duration_to: MyString
+  absence_duration_from: MyString
+  reason_of_leave: MyString
+  avl_mob: 1
+  avl_email: MyString
+  status: MyString
