@@ -24,4 +24,6 @@ LeaveType.create(name: "Half_pay_leave")
 LeaveType.create(name: "Maternity_leave")
 LeaveType.create(name: "Quarantine_leave")
 
-
+LeaveStatus.create(name: "Approved")
+LeaveStatus.create(name: "Pending")
+LeaveStatus.create(name: "Declined")

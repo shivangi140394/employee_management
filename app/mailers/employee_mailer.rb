@@ -4,4 +4,6 @@ class EmployeeMailer < ApplicationMailer
       @url  = 'http://www.gmail.com'
       mail(to: email, subject: 'Welcome to My Awesome Site')
   end
+
+  
 end

@@ -1,5 +1,19 @@
 <%= form_for @leavedetail, :url => leave_details_path, method: :post do |g| %>
  
+ <% if @leavedetail.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@leavedetail.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @leavedetail.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
  <p>
     <%= g.label :Leave_Type %><br>
     <%= g.collection_select :leave_type_id, LeaveType.order(:name),:id,:name, include_blank: false %>
@@ -39,10 +53,7 @@
     <%= g.text_field :avl_email%>
   </p>
 
-  <p>
-    <%= g.label :Status %><br>
-    <%= g.check_box :status, {}, true, false %> <br />
-  </p>
+ 
 
   <%= g.submit %>
 

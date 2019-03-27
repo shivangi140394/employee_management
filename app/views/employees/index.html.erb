@@ -14,7 +14,7 @@
       <td><%= employee.name %></td>
       <td><%= employee.email %></td>
       <% @role = Role.find_by_id(employee.role_id) %>
-     <td><%= @role.name %></td>
+      <td><%= @role.name %></td>
       <td><%= link_to 'Show', employee_path(employee) %></td>
       <td><%= link_to 'Destroy', employee_path(employee),
               method: :delete,

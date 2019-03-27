@@ -5,19 +5,33 @@
     <th>TO </th>
     <th>FROM</th>
     <th>REASON</th>
+    <th>STATUS</th> 
+    <%if current_employee.role_id == 52 %>
     <th>SHOW</th>
     <th>DELETE</th>
+    <%else%>
+    <th>STATUS</th>
+    <% end %>
   </tr>
  
   <% @leavedetails.each do |employee| %>
     <tr>
       <td><%= employee.absent_to %></td>
       <td><%= employee.absent_from %></td>
-      <td><%= employee.reason_of_leave %></td>
+      <td><%= employee.reason_of_leave %></td> 
+      <% @leavestatus = LeaveStatus.find_by_id(employee.leave_status_id) %>
+      <%binding.pry%>
+      <td><%= @leavestatus.name %></td>
+      <% if current_employee.role_id == 52  %>
+      <td><%= collection_select(:current_status, :leave_status_id, LeaveStatus.all, :id, :name) %></td>
       <td><%= link_to 'Show', leave_detail_path(employee) %></td>
       <td><%= link_to 'Destroy', leave_detail_path(employee),
               method: :delete,
               data: { confirm: 'Are you sure?' } %></td>
+      <% else %>
+       <td><input type="text" /></td>
+       <td><%= employee.current_status %></td> 
+      <% end%>
     </tr>
   <% end %>
 </table>
