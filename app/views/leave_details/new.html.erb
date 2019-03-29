@@ -25,12 +25,12 @@
 
   <p>
     <%= g.label :Absence_Duration_To %><br>
-    <%= g.datetime_field :absent_to %>
+    <%= g.date_field :absent_to %>
   </p>
 
   <p>
     <%= g.label :Absence_Duration_From %><br>
-    <%= g.datetime_field :absent_from %>
+    <%= g.date_field :absent_from %>
   </p>
 
   <p>
@@ -53,7 +53,12 @@
     <%= g.text_field :avl_email%>
   </p>
 
- 
+  <!-- <p>
+    <%#= g.label :Status %><br>
+    <%#= g.collection_select :leave_status_id, LeaveStatus.order(:name),:id,:name, include_blank: true %>
+  </p>  
+   -->
+  <%= g.hidden_field :leave_status_id, value: '2'%>
 
   <%= g.submit %>
 

@@ -1,7 +1,6 @@
 class LeaveDetailsController < ApplicationController
-
+  
   def index
-    @leavedetails = LeaveDetail.all
      if current_employee.role_id == 52 
       @leavedetails = LeaveDetail.all
      else
@@ -21,32 +20,28 @@ class LeaveDetailsController < ApplicationController
     binding.pry
     @leavedetail = current_employee.leave_details.create(leavedetail_params)
     @leavedetail.save
-    redirect_to @leavedetail 
+    redirect_to root_path
   end
 
-  # def update
-  #   @leavedetail = leavedetail.update(leavedetail_params)
-  #   if @leavedetail.save
-  #     flash[:success] = 'Activity successfully updated!'
-  #     redirect_to root_path
-  #   else
-  #     flash[:error] = 'ERROR: Activity failed to update'
-  #     render_to_string
-  #   end
-  # end
+  def update
+    @leavedetail = LeaveDetail.all
+    @leavedetail = LeaveDetail.find_by_id(params[:id])
+    @leavedetail.update_attributes(leavedetail_params)
+  end
+
+  def update_status
+    binding.pry
+    @leave_detail = LeaveDetail.find_by_id(params[:leave_detail_id])
+    @leave_detail.leave_status_id = params[:status_id]
+    @leave_detail.save   
+  end
 
   def destroy
     @leavedetail = LeaveDetail.find(params[:id])
     @leavedetail.destroy
  
-    redirect_to @leavedetail 
+    redirect_to root_path
   end
-
-  # def send_email
-  #   @leavedetail = LeaveDetail.find(params[:id])
-  #   EmployeeMailer.welcome_email(@leavedetail, params[:email]).deliver_now
-  #   redirect_to root_path
-  # end
 
   private
   def leavedetail_params

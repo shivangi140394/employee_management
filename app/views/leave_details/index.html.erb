@@ -5,33 +5,48 @@
     <th>TO </th>
     <th>FROM</th>
     <th>REASON</th>
-    <th>STATUS</th> 
+    <th>CURRENT_STATUS</th>
     <%if current_employee.role_id == 52 %>
+    <th>STATUS</th>
     <th>SHOW</th>
     <th>DELETE</th>
-    <%else%>
-    <th>STATUS</th>
     <% end %>
   </tr>
  
-  <% @leavedetails.each do |employee| %>
+  <% @leavedetails.each do |leavedetail| %>
     <tr>
-      <td><%= employee.absent_to %></td>
-      <td><%= employee.absent_from %></td>
-      <td><%= employee.reason_of_leave %></td> 
-      <% @leavestatus = LeaveStatus.find_by_id(employee.leave_status_id) %>
-      <%binding.pry%>
-      <td><%= @leavestatus.name %></td>
+      <td><%= leavedetail.absent_to %></td>
+      <td><%= leavedetail.absent_from %></td>
+      <td><%= leavedetail.reason_of_leave %></td> 
+      <% @leavestatus = LeaveStatus.find_by_id(leavedetail.leave_status_id) %>
+      <td><%= @leavestatus.name %></td> 
       <% if current_employee.role_id == 52  %>
-      <td><%= collection_select(:current_status, :leave_status_id, LeaveStatus.all, :id, :name) %></td>
-      <td><%= link_to 'Show', leave_detail_path(employee) %></td>
-      <td><%= link_to 'Destroy', leave_detail_path(employee),
+      <td><%= collection_select(:current_status, :leave_status_id, LeaveStatus.all, :id, :name, data: {id: leavedetail.id})%></td> 
+      <%= hidden_field_tag 'leave_detail_id', leavedetail.id  %>
+      <td><%= link_to 'Show', leave_detail_path(leavedetail) %></td>
+      <td><%= link_to 'Destroy', leave_detail_path(leavedetail),
               method: :delete,
               data: { confirm: 'Are you sure?' } %></td>
-      <% else %>
-       <td><input type="text" /></td>
-       <td><%= employee.current_status %></td> 
       <% end%>
     </tr>
   <% end %>
 </table>
+<script type="text/javascript">
+  $("#current_status_leave_status_id").on("click", function(){ 
+    debugger
+    var leave_detail_id = $("#leave_detail_id").val();
+    var status_id =  $(this).val();
+    $.ajax({
+      type: "GET",
+      contentType: 'json',
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+      url: "/leave_details/" + leave_detail_id + "/update_status/",
+      data: {status_id: status_id },
+      success: function(data) {
+      },
+      error: function(data) {
+         alert("error");
+      }
+    });
+}); 
+</script>

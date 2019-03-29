@@ -34,8 +34,10 @@ Rails.application.routes.draw do
   resources :leave_status do
     resources :leave_details
   end
- 
-  resources :leave_details 
+
+  resources :leave_details  do
+    get 'update_status'
+  end
 
   resources :images
 

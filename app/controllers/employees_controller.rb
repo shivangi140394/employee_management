@@ -69,9 +69,9 @@ class EmployeesController < ApplicationController
       params[:employee][:professional_detail][:images][:name].permit(:name)
     end
 
-    def professional_detail_attributes_params
-      params[:employee][:professional_detail_attributes].permit(:name, :total_experience)
-    end
+    # def professional_detail_attributes_params
+    #   params[:employee][:professional_detail_attributes].permit(:name, :total_experience)
+    # end
     
     def address_params
       params[:employee][:address].permit(:house_no, :street, :local_address, :permanent_address, :city, :state, :pincode)
