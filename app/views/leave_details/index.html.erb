@@ -1,52 +1,67 @@
 <h1>Leave Detail</h1>
- 
 <table border = "1px">
   <tr>
     <th>TO </th>
     <th>FROM</th>
     <th>REASON</th>
     <th>CURRENT_STATUS</th>
-    <%if current_employee.role_id == 52 %>
-    <th>STATUS</th>
-    <th>SHOW</th>
-    <th>DELETE</th>
+    <th>LEAVE APPLY FOR A DAY</th>
+    <th>WORK AFFECT</th>
+    <th>MOBILE</th>
+    <th>EMAIL</th>
+    <%if current_employee_role_is_admin %>
+      <th>STATUS</th>
+      <th>SHOW</th>
+      <th>DELETE</th>
     <% end %>
-  </tr>
- 
+  </tr> 
   <% @leavedetails.each do |leavedetail| %>
     <tr>
       <td><%= leavedetail.absent_to %></td>
       <td><%= leavedetail.absent_from %></td>
       <td><%= leavedetail.reason_of_leave %></td> 
-      <% @leavestatus = LeaveStatus.find_by_id(leavedetail.leave_status_id) %>
-      <td><%= @leavestatus.name %></td> 
-      <% if current_employee.role_id == 52  %>
-      <td><%= collection_select(:current_status, :leave_status_id, LeaveStatus.all, :id, :name, data: {id: leavedetail.id})%></td> 
-      <%= hidden_field_tag 'leave_detail_id', leavedetail.id  %>
-      <td><%= link_to 'Show', leave_detail_path(leavedetail) %></td>
-      <td><%= link_to 'Destroy', leave_detail_path(leavedetail),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
-      <% end%>
+      <td><%= leave_status_name(leavedetail.leave_status_id) %></td> 
+      <td><%= leavedetail.leave_apply_for_days %></td> 
+      <td><%= leavedetail.work_affect %></td>
+      <td><%= leavedetail.avl_mobile %></td>
+      <td><%= leavedetail.avl_email %></td>
+      <% if current_employee_role_is_admin  %>
+        <td>    
+          <%= select_tag "current_status", options_from_collection_for_select( leave_status, 'id', 'name'), id: "#{leavedetail.id}" %>
+        </td> 
+        <%= hidden_field_tag 'leave_detail_id', leavedetail.id, id: "#{leavedetail.id}",class: "hello" %>
+        <td><%= link_to 'Show', leave_detail_path(leavedetail) %></td>
+        <td><%= link_to 'Destroy', leave_detail_path(leavedetail),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
     </tr>
   <% end %>
 </table>
 <script type="text/javascript">
-  $("#current_status_leave_status_id").on("click", function(){ 
-    debugger
-    var leave_detail_id = $("#leave_detail_id").val();
-    var status_id =  $(this).val();
-    $.ajax({
-      type: "GET",
-      contentType: 'json',
-      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-      url: "/leave_details/" + leave_detail_id + "/update_status/",
-      data: {status_id: status_id },
-      success: function(data) {
-      },
-      error: function(data) {
-         alert("error");
-      }
+  var array = [];
+  var i;
+  $('.hello').each(function(){
+    array.push($(this).attr("id"));
+  });
+  for(i=0; i<array.length; i++)
+  {
+    $("#"+array[i]).on("click", function(){ 
+      debugger
+      var leave_detail_id = this.id
+      var status_id =  $(this).val();
+      $.ajax({
+        type: "GET",
+        contentType: 'json',
+        url: "/leave_details/" + leave_detail_id + "/update_status/",
+        data: {status_id: status_id },
+        success: function(data) {
+          location.reload();
+        },
+        error: function(data) {
+          alert("error");
+        }
+      });
     });
-}); 
+  } 
 </script>

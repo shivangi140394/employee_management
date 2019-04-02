@@ -1,22 +1,20 @@
 <h3>Fill The address Details</h3>
 
- <%= form_for @professional_detail, :url =>  employee_professional_details_path, method: :post do |form| %>
-  <p>
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
-  </p>
-  <p>
-    <%= form.label :total %><br>
-    <%= form.text_field :total_experience %>
-  </p>
-    <%= form.fields_for :images do |fd| %>
-        <%= fd.label :name %><br />
-        <%= fd.file_field :name %>
-    <%end%>
-  <p>
-    <%= form.submit %>
-  </p>
-
-  <%= render "form", locals: { professional_detail: @professional_detail } %>
-<% end %>
-<!-- , multiple: true -->
+  <%= form_for @professional_detail, :url =>  employee_professional_details_path, method: :post do |form| %>
+    <p>
+      <%= form.label :name %><br>
+      <%= form.text_field :name %>
+    </p>
+    <p>
+      <%= form.label :total %><br>
+      <%= form.text_field :total_experience %>
+    </p>
+      <%= form.fields_for :images do |fd| %>
+          <%= fd.label :name %><br />
+          <%= fd.file_field :name %>
+      <%end%>
+    <p>
+      <%= form.submit %>
+    </p>
+    <%= render "form", locals: { professional_detail: @professional_detail } %>
+  <% end %>

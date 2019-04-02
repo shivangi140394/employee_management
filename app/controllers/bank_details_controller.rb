@@ -10,7 +10,7 @@ class BankDetailsController < ApplicationController
   end
 
   private
-  def bank_details_params
-    params.require(:bank_detail).permit(:account_no, :bank_name, :branch_name, :ifsc_code)
-  end
+    def bank_details_params
+      params.require(:bank_detail).permit(:account_no, :bank_name, :branch_name, :ifsc_code)
+    end
 end

@@ -13,30 +13,13 @@ Rails.application.routes.draw do
     end
     resources :addresses , :professional_details
     resource :bank_detail
-  end
-
-  resources :employee do
-    get :invite
-  end
-
-  resources :roles do
-    resources :employee 
-  end
-
-  resources :designations do
-    resources :employee 
-  end
-
-  resources :leave_types do
-    resources :leave_details
-  end
-
-  resources :leave_status do
-    resources :leave_details
+    resource :roles, :designations 
   end
 
   resources :leave_details  do
     get 'update_status'
+    resource :leave_types
+    resource :leave_status
   end
 
   resources :images

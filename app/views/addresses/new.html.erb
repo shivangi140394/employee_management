@@ -1,42 +1,42 @@
 <h3>Fill The address Details</h3>
 
- <%= form_for @address, :url => employee_addresses_path, method: :post do |form| %>
-  <p>
-    <%= form.label :House_No %><br>
-    <%= form.text_field :house_no %>
-  </p>
- 
-  <p>
-    <%= form.label :Street %><br>
-    <%= form.text_field :street %>
-  </p>
+  <%= form_for @address, :url => employee_addresses_path, method: :post do |form| %>
+    <p>
+      <%= form.label :House_No %><br>
+      <%= form.text_field :house_no %>
+    </p>
+   
+    <p>
+      <%= form.label :Street %><br>
+      <%= form.text_field :street %>
+    </p>
 
-  <p>
-    <%= form.label :Local_address %><br>
-    <%= form.text_field :local_address %>
-  </p>
+    <p>
+      <%= form.label :Local_address %><br>
+      <%= form.text_field :local_address %>
+    </p>
 
-  <p>
-    <%= form.label :Permanent_address %><br>
-    <%= form.text_field :permanent_address %>
-  </p>
+    <p>
+      <%= form.label :Permanent_address %><br>
+      <%= form.text_field :permanent_address %>
+    </p>
 
-  <p>
-    <%= form.label :City %><br>
-    <%= form.text_field :city %>
-  </p>
+    <p>
+      <%= form.label :City %><br>
+      <%= form.text_field :city %>
+    </p>
 
-  <p>
-    <%= form.label :State %><br>
-    <%= form.text_field :state  %>
-  </p>
+    <p>
+      <%= form.label :State %><br>
+      <%= form.text_field :state  %>
+    </p>
 
-  <p>
-    <%= form.label :Pincode %><br>
-    <%= form.text_field :pincode %>
-  </p>
- 
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
+    <p>
+      <%= form.label :Pincode %><br>
+      <%= form.text_field :pincode %>
+    </p>
+   
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>

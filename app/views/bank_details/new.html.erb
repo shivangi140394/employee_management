@@ -1,28 +1,27 @@
 <h3>Fill The address Details</h3>
 
- <%= form_for @bank_detail, :url =>  employee_bank_detail_path, method: :post do |form| %>
- 
-  <p>
-    <%= form.label :Account_No %><br>
-    <%= form.text_field :account_no %>
-  </p>
- 
-  <p>
-    <%= form.label :Bank_Name %><br>
-    <%= form.text_field :bank_name %>
-  </p>
+  <%= form_for @bank_detail, :url =>  employee_bank_detail_path, method: :post do |form| %>
+    <p>
+      <%= form.label :Account_No %><br>
+      <%= form.text_field :account_no %>
+    </p>
+   
+    <p>
+      <%= form.label :Bank_Name %><br>
+      <%= form.text_field :bank_name %>
+    </p>
 
-  <p>
-    <%= form.label :Branch_name %><br>
-    <%= form.text_field :branch_name %>
-  </p>
+    <p>
+      <%= form.label :Branch_name %><br>
+      <%= form.text_field :branch_name %>
+    </p>
 
-  <p>
-    <%= form.label :IFSC_Code %><br>
-    <%= form.text_field :ifsc_code %>
-  </p>
- 
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
+    <p>
+      <%= form.label :IFSC_Code %><br>
+      <%= form.text_field :ifsc_code %>
+    </p>
+   
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>

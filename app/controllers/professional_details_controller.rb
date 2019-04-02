@@ -15,7 +15,6 @@ class ProfessionalDetailsController < ApplicationController
   end
 
   private
-
     def professional_detail_params
       params.require(:professional_detail).permit(:name, :total_experience, :images_attributes=> [:name])
     end

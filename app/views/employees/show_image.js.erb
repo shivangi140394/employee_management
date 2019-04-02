@@ -1,7 +1,7 @@
 $(document).ready(function(){
   $('#addNewImage').click(function(){
-   $('div#imageSet').append(render 'updateimages');
-    });    
+    $('div#imageSet').append(render 'updateimages');
+  });    
    $("div#imageSet").on('click', '.removeNewImage', function(){
    $(this).closest('.imagesForm').remove();
   });

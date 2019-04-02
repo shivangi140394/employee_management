@@ -1,6 +1,6 @@
 <%= form_for @leavedetail, :url => leave_details_path, method: :post do |g| %>
  
- <% if @leavedetail.errors.any? %>
+  <% if @leavedetail.errors.any? %>
     <div id="error_explanation">
       <h2>
         <%= pluralize(@leavedetail.errors.count, "error") %> prohibited
@@ -14,10 +14,11 @@
     </div>
   <% end %>
 
- <p>
+  <p>
     <%= g.label :Leave_Type %><br>
     <%= g.collection_select :leave_type_id, LeaveType.order(:name),:id,:name, include_blank: false %>
   </p>
+  
   <p>
     <%= g.label :Leave_Applied_for_Days %><br>
     <%= g.text_field :leave_apply_for_days%>
@@ -53,11 +54,6 @@
     <%= g.text_field :avl_email%>
   </p>
 
-  <!-- <p>
-    <%#= g.label :Status %><br>
-    <%#= g.collection_select :leave_status_id, LeaveStatus.order(:name),:id,:name, include_blank: true %>
-  </p>  
-   -->
   <%= g.hidden_field :leave_status_id, value: '2'%>
 
   <%= g.submit %>
