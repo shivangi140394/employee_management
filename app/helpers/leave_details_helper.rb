@@ -15,5 +15,5 @@ module LeaveDetailsHelper
   def leave_status_name id
     @leavestatus = LeaveStatus.find_by_id(id)
     @leavestatus.name
-  end    
+  end  
 end

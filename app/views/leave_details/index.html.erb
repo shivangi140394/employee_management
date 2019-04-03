@@ -1,12 +1,14 @@
 <h1>Leave Detail</h1>
 <table border = "1px">
   <tr>
+    <th>NAME</th>
+    <th>ROLE</th>
     <th>TO </th>
     <th>FROM</th>
     <th>REASON</th>
-    <th>CURRENT_STATUS</th>
-    <th>LEAVE APPLY FOR A DAY</th>
-    <th>WORK AFFECT</th>
+    <th>CURR-STATUS</th>
+    <th>LEAVE-DAYS</th>
+    <th>WORK-AFFECT</th>
     <th>MOBILE</th>
     <th>EMAIL</th>
     <%if current_employee_role_is_admin %>
@@ -17,6 +19,8 @@
   </tr> 
   <% @leavedetails.each do |leavedetail| %>
     <tr>
+      <td><%= leavedetail.leavedetail_role%></td>
+      <td><%= leavedetail.leavedetail_name%></td>
       <td><%= leavedetail.absent_to %></td>
       <td><%= leavedetail.absent_from %></td>
       <td><%= leavedetail.reason_of_leave %></td> 

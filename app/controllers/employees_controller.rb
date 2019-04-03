@@ -20,22 +20,25 @@ class EmployeesController < ApplicationController
   end
 
   def edit
+    binding.pry
     @employee = Employee.find_by(id: params[:id])
     @bank_detail = @employee.build_bank_detail
-    @professional_detail = @employee.build_professional_detail
+    # @professional_detail = @employee.build_professional_detail
+    @address = @employee.addresses.new
   end
 
   def update
+    binding.pry
     @employee = Employee.find(params[:id])
-    @bank_detail = @employee.create_bank_detail(bank_detail_params)
-    @professional_detail = @employee.create_professional_detail(professional_detail_attributes_params)
-    @professional_detail.images.create(professional_detail_params)
-    @employee.addresses.create(address_params)
     if @employee.update(new_employee_params)
       redirect_to @employee
     else
       render 'edit'
     end
+    @bank_detail = @employee.create_bank_detail(bank_detail_params)
+    # @professional_detail = @employee.create_professional_detail(professional_detail_attributes_params)
+    # @professional_detail.images.create(professional_detail_params)
+    @address = @employee.addresses.create(address_params)   
   end
 
   def destroy
@@ -51,17 +54,23 @@ class EmployeesController < ApplicationController
   end
 
   private
-    def new_employee_params
-      params.require(:employee).permit(:role_id, :designation_id, :email, :password, :password_confirmation, :name, :phone)
-    end
 
+   
+    def new_employee_params
+      params.require(:employee).permit(:role_id, :designation_id, :email, :password, :password_confirmation, :name, :phone, bank_details_attributes:
+     [:account_no, :bank_name, :branch_name, :ifsc_code], addresses_attributes: [:house_no, :street, :local_address, :permanent_address, :city, :state, :pincode])
+    end
     def bank_detail_params
       params[:employee][:bank_detail_attributes].permit(:account_no, :bank_name, :branch_name, :ifsc_code)
     end
 
-    def professional_detail_params
-      params[:employee][:professional_detail][:images][:name].permit(:name)
-    end
+    # # def professional_detail_params
+    # #   params[:employee][:professional_detail][:images][:name].permit(:name)
+    # # end
+
+    # # def professional_detail_attributes_params
+    # #   params[:employee][:professional_detail_attributes].permit(:name, :total_experience)
+    # # end
 
     def address_params
       params[:employee][:address].permit(:house_no, :street, :local_address, :permanent_address, :city, :state, :pincode)

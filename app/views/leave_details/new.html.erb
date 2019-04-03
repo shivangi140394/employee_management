@@ -16,12 +16,12 @@
 
   <p>
     <%= g.label :Leave_Type %><br>
-    <%= g.collection_select :leave_type_id, LeaveType.order(:name),:id,:name, include_blank: false %>
+    <%= g.collection_select :leave_type_id, LeaveType.order(:name),:id,:name, include_blank: false, :required => true %>
   </p>
   
   <p>
     <%= g.label :Leave_Applied_for_Days %><br>
-    <%= g.text_field :leave_apply_for_days%>
+    <%= g.text_field :leave_apply_for_days, :required => true%>
   </p>
 
   <p>
@@ -36,22 +36,22 @@
 
   <p>
     <%= g.label :Reson_Of_Leave %><br>
-    <%= g.text_area :reason_of_leave %>
+    <%= g.text_area :reason_of_leave, :required => true %>
   </p>
 
   <p>
     <%= g.label :Work_Affect %><br>
-    <%= g.text_field :work_affect %>
+    <%= g.text_field :work_affect, :required => true %>
   </p>
 
   <p>
     <%= g.label :Availble_Mobile %><br>
-    <%= g.text_field :avl_mobile %>
+    <%= g.text_field :avl_mobile, :required => true %>
   </p>
 
   <p>
     <%= g.label :Available_Email %><br>
-    <%= g.text_field :avl_email%>
+    <%= g.text_field :avl_email, :required => true%>
   </p>
 
   <%= g.hidden_field :leave_status_id, value: '2'%>
@@ -59,4 +59,15 @@
   <%= g.submit %>
 
 <% end %>
+
+<script type="text/javascript">
+  $('#leave_detail_reason_of_leave').on("click", function(){ 
+      debugger
+      var from = $("#leave_detail_absent_from").val(); 
+      var to = $("#leave_detail_absent_to").val(); 
+      if(to > from){
+          alert("Please Fill The Correct Date")
+      }
+    });
+</script>
 
