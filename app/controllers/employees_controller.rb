@@ -14,13 +14,14 @@ class EmployeesController < ApplicationController
 
   def create
     @employee = Employee.create(new_employee_params)
-    unless @employee.save
+    if @employee.save
+      redirect_to root_path
+    else
       render 'new'
     end 
   end
 
-  def edit
-    binding.pry
+  def edit 
     @employee = Employee.find_by(id: params[:id])
     @bank_detail = @employee.build_bank_detail
     # @professional_detail = @employee.build_professional_detail
@@ -28,17 +29,19 @@ class EmployeesController < ApplicationController
   end
 
   def update
-    binding.pry
     @employee = Employee.find(params[:id])
-    if @employee.update(new_employee_params)
-      redirect_to @employee
-    else
-      render 'edit'
-    end
+    # @employee.update(new_employee_params)
     @bank_detail = @employee.create_bank_detail(bank_detail_params)
     # @professional_detail = @employee.create_professional_detail(professional_detail_attributes_params)
     # @professional_detail.images.create(professional_detail_params)
-    @address = @employee.addresses.create(address_params)   
+    @address = @employee.addresses.create(address_params)
+    if @employee.update(new_employee_params) 
+      flash[:success] = "You have successfully apply for leave!" 
+      redirect_to root_path
+    else
+      flash[:error] = @employee.errors.full_messages
+      render 'edit'
+    end 
   end
 
   def destroy

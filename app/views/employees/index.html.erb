@@ -1,10 +1,12 @@
 <h1>Listing Employee</h1>
  
-<table border = "1px">
+<table class="table table-striped">
   <tr>
     <th>Name </th>
-    <th>Email</th>
+    <th>PHONE</th>
     <th>Role</th>
+    <th>Designation</th>
+    <th>Email</th>
     <th>Show_All</th>
     <th>Delete_All</th>
   </tr>
@@ -12,9 +14,10 @@
   <% @employees.each do |employee| %>
     <tr>
       <td><%= employee.name %></td>
+      <td><%= employee.phone %></td>
+      <td><%= employee_role(employee.role_id) %></td>
+      <td><%= employee_designation(employee.designation_id) %></td>
       <td><%= employee.email %></td>
-      <% @role = Role.find_by_id(employee.role_id) %>
-      <td><%= @role.name %></td>
       <td><%= link_to 'Show', employee_path(employee) %></td>
       <td><%= link_to 'Destroy', employee_path(employee),
               method: :delete,

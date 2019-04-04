@@ -1,8 +1,6 @@
 <h1>Leave Detail</h1>
-<table border = "1px">
+<table class="table table-striped">
   <tr>
-    <th>NAME</th>
-    <th>ROLE</th>
     <th>TO </th>
     <th>FROM</th>
     <th>REASON</th>
@@ -12,6 +10,8 @@
     <th>MOBILE</th>
     <th>EMAIL</th>
     <%if current_employee_role_is_admin %>
+      <th>NAME</th>
+      <th>ROLE</th>
       <th>STATUS</th>
       <th>SHOW</th>
       <th>DELETE</th>
@@ -19,8 +19,6 @@
   </tr> 
   <% @leavedetails.each do |leavedetail| %>
     <tr>
-      <td><%= leavedetail.leavedetail_role%></td>
-      <td><%= leavedetail.leavedetail_name%></td>
       <td><%= leavedetail.absent_to %></td>
       <td><%= leavedetail.absent_from %></td>
       <td><%= leavedetail.reason_of_leave %></td> 
@@ -30,6 +28,8 @@
       <td><%= leavedetail.avl_mobile %></td>
       <td><%= leavedetail.avl_email %></td>
       <% if current_employee_role_is_admin  %>
+      <td><%= leavedetail.leavedetail_role%></td>
+      <td><%= leavedetail.leavedetail_name%></td>
         <td>    
           <%= select_tag "current_status", options_from_collection_for_select( leave_status, 'id', 'name'), id: "#{leavedetail.id}" %>
         </td> 

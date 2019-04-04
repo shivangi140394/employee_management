@@ -3,21 +3,15 @@ class LeaveDetail < ApplicationRecord
   belongs_to :leave_type
   belongs_to :leave_status
 
-  # validates :absent_to, :absent_from, presence: true
-  # before_create :absent_from_after_absent_to
+  validates :absent_to, :absent_from, presence: true
 
-  # private
+  validates :avl_mobile,   :presence => {:message => 'hello world, bad operation!'},
+                     :numericality => true,
+                     :length => { :minimum => 10, :maximum => 15 }
 
-  # def absent_from_after_absent_to
-  # binding.pry
-  #   return if absent_from.blank? || absent_to.blank?
+  validates_format_of :avl_email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
 
-  #   if absent_from < absent_to
-  #     errors.add(:absent_from, "must be after the start date")
-  #   end
-  # end 
-
-  # validates :reason_of_leave, presence: true
+  before_validation :absent_from_after_absent_to
 
   def leavedetail_name
     self.employee.role.name
@@ -26,4 +20,14 @@ class LeaveDetail < ApplicationRecord
   def leavedetail_role
     self.employee.name
   end
+
+  private
+
+  def absent_from_after_absent_to
+    return if absent_from.blank? || absent_to.blank?
+
+    if absent_from < absent_to
+      errors.add(:absent_from, "must be after the start date")
+    end
+  end 
 end

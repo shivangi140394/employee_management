@@ -1,7 +1,7 @@
 class LeaveDetailsController < ApplicationController
   
   def index
-    if current_employee.role.name == 'Admin' || 'HR'
+    if current_employee.role.name == ('Admin' || 'HR')
       @leavedetails = LeaveDetail.order(:reason_of_leave)
     else
       @leavedetails = current_employee.leave_details
@@ -18,8 +18,14 @@ class LeaveDetailsController < ApplicationController
 
   def create
     @leavedetail = current_employee.leave_details.create(leavedetail_params)
-    @leavedetail.save
-    redirect_to root_path
+    if @leavedetail.save
+      flash[:success] = "You have successfully apply for leave!"
+      redirect_to root_path
+    else
+      # flash[:error] = @leavedetail.errors.full_messages
+      flash[:error] = "Sorry!! Try again"
+      render 'new'
+    end
   end
 
   def update
@@ -29,15 +35,20 @@ class LeaveDetailsController < ApplicationController
   end
 
   def update_status
+    binding.pry
     @leave_detail = LeaveDetail.find_by_id(params[:leave_detail_id])
     @leave_detail.leave_status_id = params[:status_id]
-    @leave_detail.save   
+    if @leave_detail.save
+      redirect_to root_path
+    else
+      render 'new'
+    end  
   end
 
   def destroy
     @leavedetail = LeaveDetail.find(params[:id])
     @leavedetail.destroy
-    redirect_to root_path
+    redirect_to leave_details_path
   end
 
   private
