@@ -9,6 +9,8 @@
 Role.create(name: "Admin")
 Role.create(name: "HR")
 Role.create(name: "Employee")
+Role.create(name: "Lead")
+
 
 Designation.create(name: "Web_Designer")
 Designation.create(name: "Developer")

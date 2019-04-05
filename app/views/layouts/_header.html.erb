@@ -18,14 +18,17 @@
             <li><%= link_to('Home',root_path) %></li>
             <li><%= link_to "Sign out", destroy_employee_session_path, :method => :delete %></li>
           <% elsif %> 
-            <li><%= link_to('Leave Staus',  leave_details_path(id: current_employee.id)) %></li>
+            <li><%= link_to('Leave Status',  leave_details_path(id: current_employee.id)) %></li>
             <li><%= link_to('Apply Leave',  new_leave_detail_path(id: current_employee.id)) %></li>
             <li><%= link_to('Edit Profile', edit_employee_path(id: current_employee.id)) %></li>
             <li><%= link_to('Home',root_path) %></li>
             <li><%= link_to "Sign out", destroy_employee_session_path, :method => :delete %></li>
+              <% if current_employee_role_is_lead %>
+                <li><%= link_to('Show tranees',  leave_details_path) %></li>
+              <% end %>
+          <% else %>
+            <li><%= link_to('Sign in', new_employee_session_path) %></li>
           <% end %>
-            <% else %>
-          <li><%= link_to('Sign in', new_employee_session_path) %></li>
         <% end %> 
       </ul>
     </div>

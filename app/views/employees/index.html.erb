@@ -3,9 +3,10 @@
 <table class="table table-striped">
   <tr>
     <th>Name </th>
-    <th>PHONE</th>
+    <th>Phone</th>
     <th>Role</th>
     <th>Designation</th>
+    <th>Lead</th>
     <th>Email</th>
     <th>Show_All</th>
     <th>Delete_All</th>
@@ -17,6 +18,7 @@
       <td><%= employee.phone %></td>
       <td><%= employee_role(employee.role_id) %></td>
       <td><%= employee_designation(employee.designation_id) %></td>
+      <td><%= employee.lead %></td>
       <td><%= employee.email %></td>
       <td><%= link_to 'Show', employee_path(employee) %></td>
       <td><%= link_to 'Destroy', employee_path(employee),

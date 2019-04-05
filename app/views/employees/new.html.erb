@@ -33,11 +33,17 @@
       <%= form.label :password_confirmation %><br />
       <%= form.password_field :password_confirmation, autocomplete: "new-password" %>
     </div>
+
+    <p>
+      <%= form.label :Lead%><br>
+      <%= form.collection_select :lead, Employee.order(:lead), :id, :lead, include_blank: true %>
+    </p>
     
     <p>
       <%= form.submit %> 
     </p> 
   <%end%>
+
 <div id="modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content"></div>

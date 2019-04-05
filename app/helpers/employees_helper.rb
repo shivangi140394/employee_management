@@ -10,4 +10,13 @@ module EmployeesHelper
     @designation.name
   end 
 
+  # def current_employee_role_is_admin
+  #   binding.pry
+  #   if current_employee.role.name == ('Admin' || 'HR')
+  #     return true
+  #   else
+  #     return false
+  #   end
+  # end
+
 end

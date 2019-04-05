@@ -1,8 +1,12 @@
 class LeaveDetailsController < ApplicationController
   
   def index
+    binding.pry
     if current_employee.role.name == ('Admin' || 'HR')
       @leavedetails = LeaveDetail.order(:reason_of_leave)
+    elsif current_employee.role.name == 'Lead'
+      @leavedetails = Employee.where(lead: current_employee.name)
+      # @leavedetails = LeaveDetail.order(:lead)
     else
       @leavedetails = current_employee.leave_details
     end
@@ -28,14 +32,13 @@ class LeaveDetailsController < ApplicationController
     end
   end
 
-  def update
-    @leavedetail = LeaveDetail.all
-    @leavedetail = LeaveDetail.find_by_id(params[:id])
-    @leavedetail.update_attributes(leavedetail_params)
-  end
+  # def update
+  #   @leavedetail = LeaveDetail.all
+  #   @leavedetail = LeaveDetail.find_by_id(params[:id])
+  #   @leavedetail.update_attributes(leavedetail_params)
+  # end
 
   def update_status
-    binding.pry
     @leave_detail = LeaveDetail.find_by_id(params[:leave_detail_id])
     @leave_detail.leave_status_id = params[:status_id]
     if @leave_detail.save
@@ -47,8 +50,11 @@ class LeaveDetailsController < ApplicationController
 
   def destroy
     @leavedetail = LeaveDetail.find(params[:id])
-    @leavedetail.destroy
-    redirect_to leave_details_path
+    if @leavedetail.destroy
+      redirect_to leave_details_path
+    else
+      render 'new'
+    end
   end
 
   private

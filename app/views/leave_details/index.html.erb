@@ -9,13 +9,18 @@
     <th>WORK-AFFECT</th>
     <th>MOBILE</th>
     <th>EMAIL</th>
-    <%if current_employee_role_is_admin %>
+    <% if current_employee_role_is_admin %>
       <th>NAME</th>
       <th>ROLE</th>
       <th>STATUS</th>
       <th>SHOW</th>
       <th>DELETE</th>
+    <% elsif current_employee_role_is_lead %>
+      <th>NAME</th>
+      <th>DESIGNATION</th>
+      <th>STATUS</th> 
     <% end %>
+    
   </tr> 
   <% @leavedetails.each do |leavedetail| %>
     <tr>
@@ -38,7 +43,17 @@
         <td><%= link_to 'Destroy', leave_detail_path(leavedetail),
                 method: :delete,
                 data: { confirm: 'Are you sure?' } %></td>
+
+        <% elsif current_employee_role_is_lead  %>
+            <!-- <td><%#= leavedetail.current_employee.name%></td>  -->
+           <td><%= leavedetail.leavedetail_role%></td>
+          <td><%= leavedetail.leavedetail_designation%></td>
+        <td>    
+          <%= select_tag "current_status", options_from_collection_for_select( leave_status, 'id', 'name'), id: "#{leavedetail.id}" %>
+        </td> 
+        <%= hidden_field_tag 'leave_detail_id', leavedetail.id, id: "#{leavedetail.id}",class: "hello" %>
       <% end %>
+
     </tr>
   <% end %>
 </table>

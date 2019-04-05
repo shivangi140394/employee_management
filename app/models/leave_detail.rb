@@ -20,6 +20,11 @@ class LeaveDetail < ApplicationRecord
   def leavedetail_role
     self.employee.name
   end
+  
+  def leavedetail_designation
+    self.employee.designation.name
+  end
+
 
   private
 

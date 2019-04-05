@@ -14,9 +14,9 @@ class EmployeesController < ApplicationController
 
   def create
     @employee = Employee.create(new_employee_params)
-    if @employee.save
-      redirect_to root_path
-    else
+    unless @employee.save
+    #   redirect_to root_path
+    # else
       render 'new'
     end 
   end
@@ -37,7 +37,7 @@ class EmployeesController < ApplicationController
     @address = @employee.addresses.create(address_params)
     if @employee.update(new_employee_params) 
       flash[:success] = "You have successfully apply for leave!" 
-      redirect_to root_path
+      redirect_to @employee
     else
       flash[:error] = @employee.errors.full_messages
       render 'edit'
@@ -60,7 +60,7 @@ class EmployeesController < ApplicationController
 
    
     def new_employee_params
-      params.require(:employee).permit(:role_id, :designation_id, :email, :password, :password_confirmation, :name, :phone, bank_details_attributes:
+      params.require(:employee).permit(:role_id, :designation_id, :email, :password, :password_confirmation, :name, :phone, :lead, bank_details_attributes:
      [:account_no, :bank_name, :branch_name, :ifsc_code], addresses_attributes: [:house_no, :street, :local_address, :permanent_address, :city, :state, :pincode])
     end
     def bank_detail_params
