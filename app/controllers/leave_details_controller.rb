@@ -1,16 +1,14 @@
 class LeaveDetailsController < ApplicationController
   
   def index
-    binding.pry
     if current_employee.role.name == ('Admin' || 'HR')
-      @leavedetails = LeaveDetail.order(:reason_of_leave)
-    elsif current_employee.role.name == 'Lead'
-      @leavedetails = Employee.where(lead: current_employee.name)
-      # @leavedetails = LeaveDetail.order(:lead)
-    else
+      @leavedetails = LeaveDetail.order("reason_of_leave")
+    elsif current_employee.role.name == 'Lead' 
+      @leavedetails = current_employee.leave_details
+    else 
       @leavedetails = current_employee.leave_details
     end
-  end
+  end 
 
   def show
     @leavedetail =LeaveDetail.find(params[:id])
@@ -30,6 +28,12 @@ class LeaveDetailsController < ApplicationController
       flash[:error] = "Sorry!! Try again"
       render 'new'
     end
+  end
+
+  def show_traniee
+    employee_ids = Employee.where(lead: current_employee.name).pluck(:id)
+    @leavedetails = LeaveDetail.where(employee_id: employee_ids)
+    render 'index'
   end
 
   # def update

@@ -3,8 +3,8 @@ class Employee < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable,
          :recoverable, :rememberable, :validatable            
-  has_many :addresses
-  has_many :leave_details
+  has_many :addresses, dependent: :destroy
+  has_many :leave_details, dependent: :destroy
   has_one :professional_detail, dependent: :destroy
   has_one :bank_detail, dependent: :destroy
   belongs_to :role

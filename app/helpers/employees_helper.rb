@@ -8,15 +8,10 @@ module EmployeesHelper
   def employee_designation id
     @designation = Designation.find_by_id(id)
     @designation.name
-  end 
+  end
 
-  # def current_employee_role_is_admin
-  #   binding.pry
-  #   if current_employee.role.name == ('Admin' || 'HR')
-  #     return true
-  #   else
-  #     return false
-  #   end
-  # end
-
+  def lead_list
+    role_ids = Role.where(name: ["Lead", "Admin"]).pluck(:id)
+    Employee.where(role_id: role_ids)
+  end
 end

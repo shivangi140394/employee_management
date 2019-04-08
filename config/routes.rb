@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   end
 
   resources :leave_details  do
+    get :show_traniee, on: :collection
     get 'update_status'
     resource :leave_types
     resource :leave_status

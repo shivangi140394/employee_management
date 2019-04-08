@@ -13,11 +13,11 @@ class LeaveDetail < ApplicationRecord
 
   before_validation :absent_from_after_absent_to
 
-  def leavedetail_name
+  def leavedetail_role
     self.employee.role.name
   end
 
-  def leavedetail_role
+  def leavedetail_name
     self.employee.name
   end
   

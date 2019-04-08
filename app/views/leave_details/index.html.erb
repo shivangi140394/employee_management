@@ -33,8 +33,8 @@
       <td><%= leavedetail.avl_mobile %></td>
       <td><%= leavedetail.avl_email %></td>
       <% if current_employee_role_is_admin  %>
-      <td><%= leavedetail.leavedetail_role%></td>
       <td><%= leavedetail.leavedetail_name%></td>
+      <td><%= leavedetail.leavedetail_role%></td>
         <td>    
           <%= select_tag "current_status", options_from_collection_for_select( leave_status, 'id', 'name'), id: "#{leavedetail.id}" %>
         </td> 
@@ -45,7 +45,6 @@
                 data: { confirm: 'Are you sure?' } %></td>
 
         <% elsif current_employee_role_is_lead  %>
-            <!-- <td><%#= leavedetail.current_employee.name%></td>  -->
            <td><%= leavedetail.leavedetail_role%></td>
           <td><%= leavedetail.leavedetail_designation%></td>
         <td>    

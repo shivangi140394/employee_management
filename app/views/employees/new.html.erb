@@ -36,7 +36,7 @@
 
     <p>
       <%= form.label :Lead%><br>
-      <%= form.collection_select :lead, Employee.order(:lead), :id, :lead, include_blank: true %>
+      <%= form.collection_select :lead, lead_list, :id, :name, include_blank: "Please select the lead..."%>
     </p>
     
     <p>
