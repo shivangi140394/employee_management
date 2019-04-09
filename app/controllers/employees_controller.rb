@@ -37,7 +37,7 @@ class EmployeesController < ApplicationController
     @address = @employee.addresses.create(address_params)
     if @employee.update(new_employee_params) 
       flash[:success] = "You have successfully apply for leave!" 
-      redirect_to @employee
+      redirect_to root_path
     else
       flash[:error] = @employee.errors.full_messages
       render 'edit'

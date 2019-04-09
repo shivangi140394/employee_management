@@ -12,6 +12,7 @@ module EmployeesHelper
 
   def lead_list
     role_ids = Role.where(name: ["Lead", "Admin"]).pluck(:id)
-    Employee.where(role_id: role_ids)
+    @employee = Employee.where(role_id: role_ids)
+    
   end
 end

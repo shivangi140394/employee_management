@@ -15,4 +15,5 @@ class Employee < ApplicationRecord
   accepts_nested_attributes_for :bank_detail
   accepts_nested_attributes_for :professional_detail
   accepts_nested_attributes_for :addresses
+  
 end

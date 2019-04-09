@@ -24,8 +24,8 @@ class LeaveDetailsController < ApplicationController
       flash[:success] = "You have successfully apply for leave!"
       redirect_to root_path
     else
-      # flash[:error] = @leavedetail.errors.full_messages
-      flash[:error] = "Sorry!! Try again"
+       flash[:error] = @leavedetail.errors.full_messages
+       # flash[:error] = "Sorry!! Try again"
       render 'new'
     end
   end

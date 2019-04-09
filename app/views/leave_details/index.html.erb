@@ -1,4 +1,7 @@
-<h1>Leave Detail</h1>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 align="center"><b><i>Leave Details...</i></b></h3>
+  </div>  
 <table class="table table-striped">
   <tr>
     <th>TO </th>
@@ -45,7 +48,7 @@
                 data: { confirm: 'Are you sure?' } %></td>
 
         <% elsif current_employee_role_is_lead  %>
-           <td><%= leavedetail.leavedetail_role%></td>
+           <td><%= leavedetail.leavedetail_name%></td>
           <td><%= leavedetail.leavedetail_designation%></td>
         <td>    
           <%= select_tag "current_status", options_from_collection_for_select( leave_status, 'id', 'name'), id: "#{leavedetail.id}" %>
@@ -56,6 +59,7 @@
     </tr>
   <% end %>
 </table>
+</div>
 <script type="text/javascript">
   var array = [];
   var i;

@@ -1,109 +1,159 @@
-<h3>Enter the Details </h3>
-  <%= form_for @employee, :url => employee_path, method: :put do |f| %>
-    <p>
-      <%= f.label :Name%><br>
-      <%= f.text_field :name %>
-    </p>
 
-    <p>
-      <%= f.label :Phone%><br>
-      <%= f.text_field :phone %>
-    </p>
 
-    <p>
-      <%= f.label :Role %><br>
-     <u> <%= @employee.role.name %></u>
-    </p>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 align = "center"><b><i>Edit the Profile...</i></b> </h3>
+  </div>
+  <div class="row">
+  <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+
+  <%= form_for @employee, :url => employee_path, method: :put, :html => {:class => "form-horizontal center"} do |f| %>
+
+    <div class="form-group">
+      <%= f.label :Name, class: "col-md-6 control-label"%><br>
+      <div class="col-md-4">
+      <%= f.text_field :name, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :Phone, class: "col-md-6 control-label"%><br>
+      <div class="col-md-4">
+      <%= f.text_field :phone, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :Role, class: "col-md-6 control-label" %><br>
+      <div class="col-md-4">
+      <b> <%= @employee.role.name %></b>
+      </div>
+    </div>
    
-    <p>
-      <%= f.label :Designation %><br>
-     <u> <%= @employee.designation.name %></u>
-    </p>
+    <div class="form-group">
+      <%= f.label :Designation,class: "col-md-6 control-label" %><br>
+      <div class="col-md-4">
+      <b><%= @employee.designation.name %></b>
+      </div>
+    </div>
 
-    <p>
-      <%= f.label :Email%><br>
-      <%= f.text_field :email %>
-    </p>
+   <div class="form-group">
+      <%= f.label :Email, class: "col-md-6 control-label"%><br>
+      <div class="col-md-4">
+      <%= f.text_field :email, class: "form-control" %>
+      </div>
+   </div>
     
+    <div class="form-group">
     <div class="field">
-      <%= f.label :password %>
+      <%= f.label :password, class: "col-md-6 control-label"%>
       <% if @minimum_password_length %>
       <%= @employee.password.inspect %>
       <em>(<%= @minimum_password_length %> characters minimum)</em>
       <% end %><br />
-      <%= f.password_field :password, autocomplete: "new-password" %>
+      <div class="col-md-4">
+      <%= f.password_field :password, autocomplete: "new-password", class: "form-control"  %>
     </div>
-
+    </div>
+    </div>
+  
+    <div class="form-group">
     <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      <%= f.label :password_confirmation, class: "col-md-6 control-label" %><br />
+      <div class="col-md-4">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+    </div>
+    </div>
     </div>
 
 
-   <h3> Add Bank Details</h3>
+   <h3 align = "center"> Add Bank Details</h3>
 
   <%= f.fields_for :bank_detail do |f| %>
+    
+    <div class="form-group">
+      <%= f.label :Account_No, class: "col-md-6 control-label" %><br>
+      <div class="col-md-4">
+      <%= f.text_field :account_no, :required => true, class: "form-control" %>
+      </div>
+    </div>
 
-    <p>
-      <%= f.label :Account_No %><br>
-      <%= f.text_field :account_no, :required => true %>
-    </p>
    
-    <p>
-      <%= f.label :Bank_Name %><br>
-      <%= f.text_field :bank_name, :required => true %>
-    </p>
+    <div class="form-group">
+      <%= f.label :Bank_Name, class: "col-md-6 control-label" %><br>
+      <div class="col-md-4">
+      <%= f.text_field :bank_name, :required => true, class: "form-control" %>
+      </div>
+    </div>
 
-    <p>
-      <%= f.label :Branch_name %><br>
-      <%= f.text_field :branch_name, :required => true %>
-    </p>
+    <div class="form-group">
+      <%= f.label :Branch_name, class: "col-md-6 control-label" %><br>
+      <div class="col-md-4">
+      <%= f.text_field :branch_name, :required => true, class: "form-control" %>
+      </div>
+    </div>
 
-    <p>
-      <%= f.label :IFSC_Code %><br>
-      <%= f.text_field :ifsc_code, :required => true %>
-    </p>
+    <div class="form-group">
+      <%= f.label :IFSC_Code, class: "col-md-6 control-label" %><br>
+      <div class="col-md-4">
+      <%= f.text_field :ifsc_code, :required => true, class: "form-control" %>
+      </div>
+    </div>
     
   <%end%>
 
-  <h3>Add Address Details</h3>
+  <h3 align = "center">Add Address Details</h3>
 
   <%= f.fields_for :address do |f| %>
 
-    <p>
-     <%= f.label :House_No %><br>
-     <%= f.text_field :house_no, :required => true %>
-    </p>
+    <div class="form-group">
+      <%= f.label :House_No, class: "col-md-6 control-label" %><br>
+      <div class="col-md-4">
+      <%= f.text_field :house_no, :required => true, class: "form-control" %>
+      </div>
+    </div>
  
-    <p>
-     <%= f.label :Street %><br>
-     <%= f.text_field :street, :required => true%>
-    </p>
+    <div class="form-group">
+      <%= f.label :Street, class: "col-md-6 control-label" %><br>
+      <div class="col-md-4">
+      <%= f.text_field :street, :required => true, class: "form-control"%>
+      </div>
+    </div>
 
-    <p>
-      <%= f.label :Local_address %><br>
-      <%= f.text_field :local_address, :required => true %>
-    </p>
+    <div class="form-group">
+      <%= f.label :Local_address, class: "col-md-6 control-label" %><br>
+      <div class="col-md-4">
+      <%= f.text_field :local_address, :required => true, class: "form-control" %>
+      </div>
+    </div>
 
-    <p>
-      <%= f.label :Permanent_address %><br>
-      <%= f.text_field :permanent_address, :required => true %>
-    </p>
+    <div class="form-group">
+      <%= f.label :Permanent_address, class: "col-md-6 control-label" %><br>
+      <div class="col-md-4">
+      <%= f.text_field :permanent_address, :required => true, class: "form-control" %>
+      </div>
+    </div>
 
-    <p>
-      <%= f.label :City %><br>
-      <%= f.text_field :city, :required => true %>
-    </p>
+    <div class="form-group">
+      <%= f.label :City, class: "col-md-6 control-label" %><br>
+      <div class="col-md-4">
+      <%= f.text_field :city, :required => true, class: "form-control" %>
+      </div>
+    </div>
 
-    <p>
-      <%= f.label :State %><br>
-      <%= f.text_field :state, :required => true  %>
-    </p>
+    <div class="form-group">
+      <%= f.label :State, class: "col-md-6 control-label" %><br>
+      <div class="col-md-4">
+      <%= f.text_field :state, :required => true, class: "form-control"  %>
+      </div>
+    </div>
 
-    <p>
-      <%= f.label :Pincode %><br>
-      <%= f.text_field :pincode  %>
-    </p>
+    <div class="form-group">
+      <%= f.label :Pincode, class: "col-md-6 control-label" %><br>
+      <div class="col-md-4">
+      <%= f.text_field :pincode, class: "form-control"  %>
+      </div>
+    </div>
   <%end%>
   
  <!--  <h3>Add ProfessionalDetails</h3>
@@ -123,11 +173,11 @@
        </div> 
       <a href="javascript:;" id="addNewImage">Add Multiple Documents</a> 
   <%#end%> -->
-  <p>
-    <%= f.submit %>
-  </p>
+  
+    <%= f.submit "Submit", class: "btn btn-primary center-block" %>
+  
 <%end%>
-
+</div>
 <!-- <script type="text/javascript">
 $(document).ready(function(){
   $('#addNewImage').click(function(){
