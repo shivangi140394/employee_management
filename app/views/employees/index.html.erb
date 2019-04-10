@@ -1,33 +1,31 @@
-<div class="panel panel-primary">
+<div class="panel panel-primary" style="max-width: 80%";>
   <div class="panel-heading">
     <h3 align = "center"><b><i>Listing Employee...</i></b></h3>
   </div>
- 
-<table class="table table-striped">
-  <tr>
-    <th>Name </th>
-    <th>Phone</th>
-    <th>Role</th>
-    <th>Designation</th>
-    <th>Lead</th>
-    <th>Email</th>
-    <th>Show_All</th>
-    <th>Delete_All</th>
-  </tr>
- 
-  <% @employees.each do |employee| %>
+  <table class="table table-striped">
     <tr>
-      <td><%= employee.name %></td>
-      <td><%= employee.phone %></td>
-      <td><%= employee_role(employee.role_id) %></td>
-      <td><%= employee_designation(employee.designation_id) %></td>
-      <td><%= employee.lead %></td>
-      <td><%= employee.email %></td>
-      <td><%= link_to 'Show', employee_path(employee) %></td>
-      <td><%= link_to 'Destroy', employee_path(employee),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
+      <th>Name </th>
+      <th>Phone</th>
+      <th>Role</th>
+      <th>Designation</th>
+      <th>Lead</th>
+      <th>Email</th>
+      <th>Show_All</th>
+      <th>Delete_All</th>
     </tr>
-  <% end %>
-</table>
+    <% @employees.each do |employee| %>
+      <tr>
+        <td><%= employee.name %></td>
+        <td><%= employee.phone %></td>
+        <td><%= employee_role(employee.role_id) %></td>
+        <td><%= employee_designation(employee.designation_id) %></td>
+        <td><%= employee.lead %></td>
+        <td><%= employee.email %></td>
+        <td><%= link_to 'Show', employee_path(employee) %></td>
+        <td><%= link_to 'Destroy', employee_path(employee),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </table>
 </div>

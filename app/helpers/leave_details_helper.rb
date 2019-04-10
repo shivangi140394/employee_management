@@ -5,7 +5,15 @@ module LeaveDetailsHelper
   end
 
   def current_employee_role_is_admin
-    if current_employee.role.name == ('Admin' || 'HR')
+    if current_employee.role.name == 'Admin' 
+      return true
+    else
+      return false
+    end
+  end
+
+  def current_employee_role_is_hr
+    if current_employee.role.name == 'HR'
       return true
     else
       return false

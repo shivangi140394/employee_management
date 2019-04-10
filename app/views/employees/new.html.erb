@@ -1,68 +1,65 @@
-<div class="panel panel-primary">
-  <div class="panel-heading">
-      <h3 align ="center"><b><i>Enter the Details...</i></b> </h3>
-  </div>
-
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+      <h3 align ="center"><b><i>New Employee...</i></b> </h3>
+      </div>
+      <div class="panel-body">
 
       <%= form_for @employee, :url =>  employees_path, method: :post, remote: true, :html => {:class => "form-horizontal center"} do |form| %>
- 
-      
+
         <div class="form-group">
-          <%= form.label :Role, class: "col-md-6 control-label" %><br>
-            <div class="col-md-4">
-            <%= form.collection_select :role_id, Role.order(:name),:id,:name, {include_blank: false}, {class: "form-control"} %>
+          <%= form.label :Role, class: "col-md-1 control-label" %><br>
+            <div class="col-md-12">
+            <%= form.collection_select :role_id, Role.order(:name),:id,:name, {include_blank: "SELECT"}, {class: "form-control"} %>
             </div>
         </div>
     
    
-      <div class="form-group">
-        <%= form.label :Designation, class: "col-md-6 control-label" %><br>
-          <div class="col-md-4">
-          <%= form.collection_select :designation_id, Designation.order(:name),:id,:name, {include_blank: false}, {class: "form-control"} %>
-          </div>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :Email, class: "col-md-6 control-label"%><br>
-        <div class="col-md-4">
-          <%= form.email_field :email, class: "form-control" %>
+        <div class="form-group">
+          <%= form.label :Designation, class: "col-md-1 control-label" %><br>
+            <div class="col-md-12">
+            <%= form.collection_select :designation_id, Designation.order(:name),:id,:name, {include_blank: "SELECT"}, {class: "form-control"} %>
+            </div>
         </div>
-      </div>
+
+        <div class="form-group">
+          <%= form.label :Email, class: "col-md-1 control-label"%><br>
+            <div class="col-md-12">
+            <%= form.email_field :email, class: "form-control" %>
+            </div>
+        </div>
     
-      <div class="form-group">
-      <div class="field">
-        <%= form.label :password, class: "col-md-6 control-label" %>
-        <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-          <% end %><br />
-          <div class="col-md-4">
-          <%= form.password_field :password, autocomplete: "new-password", class: "form-control" %>
+        <div class="form-group">
+          <div class="field">
+            <%= form.label :password, class: "col-md-1 control-label" %>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+            <div class="col-md-12">
+            <%= form.password_field :password, autocomplete: "new-password", class: "form-control" %>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="form-group">
-        <div class="field">
-          <%= form.label :password_confirmation, class: "col-md-6 control-label" %><br />
-          <div class="col-md-4">
-          <%= form.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+        <div class="form-group">
+          <div class="col-md-12">
+            <div class="field">
+            <%= form.label :password_confirmation, class: "col-md-0 control-label" %><br />
+            <%= form.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="form-group">
-        <%= form.label :Lead, class: "col-md-6 control-label"%><br>
-          <div class="col-md-4">
-          <%= form.collection_select :lead, lead_list, :name, :name, {include_blank: "Please select the lead..."}, {class: "form-control"}%>
-          </div>
+        <div class="form-group">
+          <%= form.label :Lead, class: "col-md-1 control-label"%><br>
+            <div class="col-md-12">
+            <%= form.collection_select :lead, lead_list, :name, :name, {include_blank: "Please select the lead..."}, {class: "form-control"}%>
+            </div>
+        </div>
+        <%= form.submit "Submit", class: "btn btn-primary" %> 
+        <%end%>
       </div>
-    
-      <p>
-        <%= form.submit "Submit", class: "btn btn-primary center-block" %> 
-      </p>       
-      <%end%>
     </div>
   </div>
 </div>

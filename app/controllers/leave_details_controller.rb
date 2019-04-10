@@ -1,7 +1,9 @@
 class LeaveDetailsController < ApplicationController
   
   def index
-    if current_employee.role.name == ('Admin' || 'HR')
+    if current_employee.role.name == 'Admin' 
+      @leavedetails = LeaveDetail.order("reason_of_leave")
+    elsif current_employee.role.name == 'HR'
       @leavedetails = LeaveDetail.order("reason_of_leave")
     elsif current_employee.role.name == 'Lead' 
       @leavedetails = current_employee.leave_details

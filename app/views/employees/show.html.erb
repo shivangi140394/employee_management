@@ -1,27 +1,28 @@
-<div class="panel panel-primary">
-  <div class="panel-heading">Show the Employee Detail...</div>
-<p>
-  <strong>Name:</strong>
-  <%= @employee.name %>
-</p>
+<div class="panel panel-primary" style="max-width: 40%";>
+  <div class="panel-heading" align="center">Show the Employee Detail...</div>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @employee.phone %>
-</p>
+  <p align="center">
+    <strong>Name:</strong>
+    <%= @employee.name %>
+  </p>
 
-<p>
-  <strong>Role:</strong>
-  <td><%= @employee.role.name %></td>
-</p>
+  <p align="center">
+    <strong>Phone:</strong>
+    <%= @employee.phone %>
+  </p>
+
+  <p align="center">
+    <strong>Role:</strong>
+    <td><%= @employee.role.name %></td>
+  </p>
  
-<p>
-  <strong>Email:</strong>
-  <%= @employee.email %>
-</p>
+  <p align="center">
+    <strong>Email:</strong>
+    <%= @employee.email %>
+  </p>
 
-<p>
-  <strong>Designation:</strong>
-  <td><%= @employee.designation.name %></td>
-</p>
+  <p align="center">
+    <strong>Designation:</strong>
+    <td><%= @employee.designation.name %></td>
+  </p>
 </div>

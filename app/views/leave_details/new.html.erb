@@ -1,74 +1,75 @@
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <h3 align = "center"> <b><i>Apply for the leave... </i></b></h3>
-  </div>
-
 <div class="row">
   <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-
-<%= form_for @leavedetail, :url => leave_details_path, method: :post, :html => {:class => "form-horizontal"} do |g| %>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+      <h3 align = "center"> <b><i>Apply for the leave... </i></b></h3>
+      </div>
+      <div class="panel-body">
+      <%= form_for @leavedetail, :url => leave_details_path, method: :post, :html => {:class => "form-horizontal"} do |g| %>
  
- <div class="form-group">
-    <%= g.label :Leave_Type,  class: "col-md-6 control-label" %><br>
-    <div class="col-md-4">
-      <%= g.collection_select :leave_type_id, LeaveType.order(:name),:id,:name, {include_blank: false}, {class: "form-control"} %>
-    </div>
-</div>
+      <div class="form-group">
+        <div class="col-md-12">
+          <%= g.label :Leave_Type %><br>
+          <%= g.collection_select :leave_type_id, LeaveType.order(:name),:id,:name, {include_blank: "SELECT"}, {class: "form-control"} %>
+        </div>
+      </div>
   
-<div class="form-group">  
-  <%= g.label :Leave_Applied_for_Days,  class: "col-md-6 control-label" %><br>
-    <div class="col-md-4">
-    <%= g.text_field :leave_apply_for_days, :required => true,  class: "form-control"%>
-    </div>
-</div>
+      <div class="form-group">  
+        <div class="col-md-12">
+          <%= g.label :Leave_Applied_for_Days,  class: "col-md-0 control-label" %><br>
+          <%= g.text_field :leave_apply_for_days, :required => true,  class: "form-control"%>
+        </div>
+      </div>
 
-<div class="form-group">
-  <%= g.label :Absence_Duration_To,  class: "col-md-6 control-label" %><br>
-    <div class="col-md-4">
-    <%= g.date_field :absent_to,  class: "form-control" %>
-    </div>
-</div>
+      <div class="form-group">
+        <div class="col-md-12">
+          <%= g.label :Absence_Duration_To,  class: "col-md-0 control-label" %><br>
+          <%= g.date_field :absent_to,  class: "form-control" %>
+        </div>
+      </div>
 
-<div class="form-group">
-  <%= g.label :Absence_Duration_From,  class: "col-md-6 control-label" %><br>
-    <div class="col-md-4">
-    <%= g.date_field :absent_from,  class: "form-control" %>
-    </div>
-</div>
+      <div class="form-group">
+        <div class="col-md-12">
+          <%= g.label :Absence_Duration_From,  class: "col-md-0 control-label" %><br>
+          <%= g.date_field :absent_from,  class: "form-control" %>
+        </div>
+      </div>
 
-<div class="form-group">
-  <%= g.label :Reson_Of_Leave,  class: "col-md-6 control-label" %><br>
-    <div class="col-md-4">
-    <%= g.text_area :reason_of_leave, :required => true,  class: "form-control" %>
-    </div>
-</div>
+      <div class="form-group">
+        <div class="col-md-12">
+          <%= g.label :Reson_Of_Leave,  class: "col-md-0 control-label" %><br>
+          <%= g.text_area :reason_of_leave, :required => true,  class: "form-control" %>
+        </div>
+      </div>
 
-<div class="form-group">
-  <%= g.label :Work_Affect,  class: "col-md-6 control-label" %><br>
-    <div class="col-md-4">
-    <%= g.text_field :work_affect, :required => true,  class: "form-control" %>
-    </div>
-</div>
+      <div class="form-group">
+        <div class="col-md-12">
+          <%= g.label :Work_Affect,  class: "col-md-0 control-label" %><br>
+          <%= g.text_field :work_affect, :required => true,  class: "form-control" %>
+        </div>
+      </div>
 
-<div class="form-group">
-  <%= g.label :Availble_Mobile,  class: "col-md-6 control-label" %><br>
-    <div class="col-md-4">
-    <%= g.text_field :avl_mobile, :required => true,  class: "form-control" %>
-    </div>
-</div>
+      <div class="form-group">
+        <div class="col-md-12">
+          <%= g.label :Availble_Mobile,  class: "col-md-0 control-label" %><br>
+          <%= g.text_field :avl_mobile, :required => true,  class: "form-control" %>
+        </div>
+      </div>
 
-<div class="form-group">
-  <%= g.label :Available_Email,  class: "col-md-6 control-label" %><br>
-    <div class="col-md-4">
-    <%= g.text_field :avl_email, :required => true,  class: "form-control"%>
-    </div>
-</div>
+      <div class="form-group">
+        <div class="col-md-12">
+          <%= g.label :Available_Email,  class: "col-md-0 control-label" %><br>
+          <%= g.text_field :avl_email, :required => true,  class: "form-control"%>
+        </div>
+      </div>
   
-<%= g.hidden_field :leave_status_id, value: '2'%>
+      <%= g.hidden_field :leave_status_id, value: '2'%>
 
-<%= g.submit "Submit", class: "btn btn-primary center-block" %>
-
-<% end %>
+      <%= g.submit "Submit", class: "btn btn-primary" %>
+      <% end %>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- <script type="text/javascript">
   $('#leave_detail_reason_of_leave').on("click", function(){ 
