@@ -1,7 +1,7 @@
 
 <div class="panel panel-primary" style="max-width: 95%";>
   <div class="panel-heading">
-    <h3 align="center"><b><i>Leave Details...</i></b></h3>
+    <h3 align="center"><b><i>Leave Details</i></b></h3>
   </div>  
   <div class="panel-body">
   <table class="table table-striped">
@@ -14,18 +14,18 @@
       <th>WORK-AFFECT</th>
       <th>MOBILE</th>
       <th>EMAIL</th>
-      <% if current_employee_role_is_admin %>
+      <% if current_employee_role_is_admin || current_employee_role_is_hr %>
         <th>NAME</th>
         <th>ROLE</th>
         <th>STATUS</th>
         <th>SHOW</th>
-        <th>DELETE</th>
-      <% elsif current_employee_role_is_lead %>
+        <th>Action</th>
+      <% elsif current_employee_role_is_lead  %>
         <th>NAME</th>
         <th>DESIGNATION</th>
-        <th>STATUS</th> 
-      <% end %>   
-    </tr> 
+        <th>STATUS</th>
+      <% end %>  
+    </tr>
     <% @leavedetails.each do |leavedetail| %>
       <tr>
         <td><%= leavedetail.absent_to %></td>
@@ -36,7 +36,18 @@
         <td><%= leavedetail.work_affect %></td>
         <td><%= leavedetail.avl_mobile %></td>
         <td><%= leavedetail.avl_email %></td>
-        <% if current_employee_role_is_admin  %>
+        <% if current_employee_role_is_admin || current_employee_role_is_hr  %>
+        <!-- <%# if current_employee_role_is_hr && leavedetail.employee.role.name == "HR" %>
+           <td><%#= leavedetail.leavedetail_name%></td>
+           <td><%#= leavedetail.leavedetail_role%></td>
+           <td>    
+            <%#= select_tag "current_status", options_from_collection_for_select( leave_status, 'id', 'name'), id: "#{leavedetail.id}" %>
+            <td><%#= link_to 'Show', leave_detail_path(leavedetail) %></td>
+          <td><%#= link_to 'Delete', leave_detail_path(leavedetail),
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' } %></td>
+          </td> 
+        <%# end %> -->
         <td><%= leavedetail.leavedetail_name%></td>
         <td><%= leavedetail.leavedetail_role%></td>
           <td>    
@@ -44,7 +55,7 @@
           </td> 
           <%= hidden_field_tag 'leave_detail_id', leavedetail.id, id: "#{leavedetail.id}",class: "hello" %>
           <td><%= link_to 'Show', leave_detail_path(leavedetail) %></td>
-          <td><%= link_to 'Destroy', leave_detail_path(leavedetail),
+          <td><%= link_to 'Delete', leave_detail_path(leavedetail),
                   method: :delete,
                   data: { confirm: 'Are you sure?' } %></td>
           <% elsif current_employee_role_is_lead  %>
@@ -57,8 +68,11 @@
           <% end %>
         </tr>
       <% end %>
-   </table>
+    </table>
   </div>
+</div>
+<div class="footer2">
+  <marquee><p><b>Employee Managment System!...</b></p></marquee>
 </div>
 <script type="text/javascript">
   var array = [];

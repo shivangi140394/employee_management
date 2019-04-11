@@ -18,6 +18,7 @@ Designation.create(name: "Android_developer")
 Designation.create(name: "IOS_Developer")
 Designation.create(name: "BDE")
 Designation.create(name: "HR")
+Designation.create(name: "Traniee")
 
 LeaveType.create(name: "Sick_leave")
 LeaveType.create(name: "Casual_leave")

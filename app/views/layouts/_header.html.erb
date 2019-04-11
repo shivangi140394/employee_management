@@ -11,30 +11,28 @@
     <div class ="link">
       <ul class="nav navbar-nav navbar-right">
         <% if employee_signed_in? %>
-          <% if current_employee_role_is_admin %>
+          <% if current_employee_role_is_admin || current_employee_role_is_hr %>
+            <% if current_employee_role_is_hr %>
+            <li><%= link_to('Apply Leave',  new_leave_detail_path(id: current_employee.id)) %></li>
+            <li><%= link_to('Edit Profile', edit_employee_path(id: current_employee.id)) %></li>
+            <li><%= link_to('Leave Status',  show_hr_leave_leave_detail_path(id: current_employee.id)) %></li>
+            <% end %>
             <li><%= link_to('Show Leave', leave_details_path) %></li>
             <li><%= link_to('All Users', employees_path) %></li>
             <li><%= link_to('New_Employee', new_employee_path)%></li>
             <li><%= link_to('Home',root_path) %></li>
-            <li><%= link_to "Sign out", destroy_employee_session_path, :method => :delete %></li>
-          <% elsif current_employee_role_is_hr %>
-            <li><%= link_to('Show Leave', leave_details_path) %></li>
-            <li><%= link_to('All Users', employees_path) %></li>
-            <li><%= link_to('New_Employee', new_employee_path)%></li>
-            <li><%= link_to('Home',root_path) %></li>
-            <li><%= link_to "Sign out", destroy_employee_session_path, :method => :delete %></li>
-          <% elsif %> 
+          <% else %> 
             <li><%= link_to('Leave Status',  leave_details_path(id: current_employee.id)) %></li>
             <li><%= link_to('Apply Leave',  new_leave_detail_path(id: current_employee.id)) %></li>
             <li><%= link_to('Edit Profile', edit_employee_path(id: current_employee.id)) %></li>
             <li><%= link_to('Home',root_path) %></li>
-            <li><%= link_to "Sign out", destroy_employee_session_path, :method => :delete %></li>
               <% if current_employee_role_is_lead %>
                 <li><%= link_to('Show tranees',  show_traniee_leave_details_path) %></li>
               <% end %>
-          <% else %>
-            <li><%= link_to('Sign in', new_employee_session_path) %></li>
           <% end %>
+          <li><%= link_to "Sign out", destroy_employee_session_path, :method => :delete %></li>
+        <% else %>
+          <li><%= link_to('Sign in', new_employee_session_path) %></li>
         <% end %> 
       </ul>
     </div>

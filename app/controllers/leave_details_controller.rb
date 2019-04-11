@@ -2,13 +2,13 @@ class LeaveDetailsController < ApplicationController
   
   def index
     if current_employee.role.name == 'Admin' 
-      @leavedetails = LeaveDetail.order("reason_of_leave")
-    elsif current_employee.role.name == 'HR'
-      @leavedetails = LeaveDetail.order("reason_of_leave")
+      @leavedetails = LeaveDetail.order("created_at DESC")
+    elsif current_employee.role.name == 'HR' 
+      @leavedetails = LeaveDetail.order("created_at DESC")
     elsif current_employee.role.name == 'Lead' 
-      @leavedetails = current_employee.leave_details
+      @leavedetails = current_employee.leave_details.order("created_at DESC")
     else 
-      @leavedetails = current_employee.leave_details
+      @leavedetails = current_employee.leave_details.order("created_at DESC")
     end
   end 
 
@@ -35,6 +35,11 @@ class LeaveDetailsController < ApplicationController
   def show_traniee
     employee_ids = Employee.where(lead: current_employee.name).pluck(:id)
     @leavedetails = LeaveDetail.where(employee_id: employee_ids)
+    render 'index'
+  end
+
+  def show_hr_leave
+    @leavedetails = current_employee.leave_details.order("created_at DESC")
     render 'index'
   end
 
