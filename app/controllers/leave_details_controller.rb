@@ -4,7 +4,7 @@ class LeaveDetailsController < ApplicationController
     if current_employee.role.name == 'Admin' 
       @leavedetails = LeaveDetail.order("created_at DESC")
     elsif current_employee.role.name == 'HR' 
-      @leavedetails = LeaveDetail.order("created_at DESC")
+      @leavedetails = LeaveDetail.all_except(current_employee.leave_details).order("created_at DESC")
     elsif current_employee.role.name == 'Lead' 
       @leavedetails = current_employee.leave_details.order("created_at DESC")
     else 
@@ -21,6 +21,7 @@ class LeaveDetailsController < ApplicationController
   end
 
   def create
+    binding.pry
     @leavedetail = current_employee.leave_details.create(leavedetail_params)
     if @leavedetail.save
       flash[:success] = "You have successfully apply for leave!"

@@ -29,29 +29,32 @@
             <%= form.email_field :email, class: "form-control" %>
             </div>
         </div>
+
+
+       
     
-        <div class="form-group">
+          <!-- <div class="form-group">
           <div class="field">
-            <%= form.label :password, class: "col-md-1 control-label" %>
-            <% if @minimum_password_length %>
+            <%#= form.label :password, class: "col-md-1 control-label" %>
+            <%# if @minimum_password_length %>
             <em>(<%= @minimum_password_length %> characters minimum)</em>
-            <% end %><br />
+            <%# end %><br />
             <div class="col-md-12">
-            <%= form.password_field :password, autocomplete: "new-password", class: "form-control" %>
+            <%#= form.password_field :password, autocomplete: "new-password", class: "form-control" %>
             </div>
           </div>
-        </div>
-
+        </div> 
+ 
         <div class="form-group">
           <div class="col-md-12">
             <div class="field">
-            <%= form.label :password_confirmation, class: "col-md-0 control-label" %><br />
-            <%= form.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+            <%#= form.label :password_confirmation, class: "col-md-0 control-label" %><br />
+            <%#= form.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
             </div>
           </div>
-        </div>
-
-        <div class="form-group">
+        </div>  
+ -->
+          <div class="form-group">
           <%= form.label :Lead, class: "col-md-1 control-label"%><br>
             <div class="col-md-12">
             <%= form.collection_select :lead, lead_list, :name, :name, {include_blank: "Please select the lead..."}, {class: "form-control"}%>

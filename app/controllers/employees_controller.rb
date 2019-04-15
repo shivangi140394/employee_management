@@ -13,11 +13,17 @@ class EmployeesController < ApplicationController
   end
 
   def create
-    @employee = Employee.create(new_employee_params)
+    password_length = 6
+    @password = Devise.friendly_token.first(password_length)
+    @employee = Employee.new(new_employee_params)
+    @employee.password = @password
+    #@employee = Employee.create(new_employee_params)
+    # @employee.password = SecureRandom.hex(8)
     unless @employee.save
-    #   redirect_to root_path
-    # else
+      flash[:error] = @employee.errors.full_messages
       render 'new'
+    else
+       flash[:success] = "Thanks to create a new user!" 
     end 
   end
 
@@ -25,7 +31,8 @@ class EmployeesController < ApplicationController
     @employee = Employee.find_by(id: params[:id])
     @bank_detail = @employee.build_bank_detail
     # @professional_detail = @employee.build_professional_detail
-    @address = @employee.addresses.new
+    # @address = @employee.addresses.new
+    @address = @employee.build_address
   end
 
   def update
@@ -34,7 +41,8 @@ class EmployeesController < ApplicationController
     @bank_detail = @employee.create_bank_detail(bank_detail_params)
     # @professional_detail = @employee.create_professional_detail(professional_detail_attributes_params)
     # @professional_detail.images.create(professional_detail_params)
-    @address = @employee.addresses.create(address_params)
+    # @address = @employee.addresses.create(address_params)
+    @address = @employee.create_address(address_params)
     if @employee.update(new_employee_params) 
       flash[:success] = "You have successfully apply for leave!" 
       redirect_to root_path
@@ -52,7 +60,7 @@ class EmployeesController < ApplicationController
 
   def send_email
     @employee = Employee.find(params[:id])
-    EmployeeMailer.welcome_email(@employee, params[:email]).deliver_now
+    EmployeeMailer.welcome_email(@employee, params[:email], params[:password]).deliver_now
     redirect_to root_path
   end
 
@@ -76,6 +84,6 @@ class EmployeesController < ApplicationController
     # # end
 
     def address_params
-      params[:employee][:address].permit(:house_no, :street, :local_address, :permanent_address, :city, :state, :pincode)
+      params[:employee][:address_attributes].permit(:house_no, :street, :local_address, :permanent_address, :city, :state, :pincode)
     end
 end

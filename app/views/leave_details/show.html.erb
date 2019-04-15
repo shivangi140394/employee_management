@@ -1,31 +1,44 @@
 <div class="panel panel-primary" style="max-width: 40%";>
   <div class="panel-heading" align="center">Show Leave Detail of Employee</div>
+    <ul class="list-group">
 
-  <p align="center">
-    <strong>TO:</strong>
-    <%= @leavedetail.absent_to %>
-  </p>
+      <li class="list-group-item">
+      <p align="center">
+        <strong>TO:</strong>
+        <%= @leavedetail.absent_to %>
+      </p>
+    </li>
  
-  <p align="center">
-    <strong>FROM:</strong>
-    <%= @leavedetail.absent_from %>
-  </p>
+    <li class="list-group-item">
+    <p align="center">
+      <strong>FROM:</strong>
+      <%= @leavedetail.absent_from %>
+    </p>
+  </li>
 
+  <li class="list-group-item">
   <p align="center">
     <strong>RESON:</strong>
     <%= @leavedetail.reason_of_leave %>
   </p>
+  </li>
 
+  <li class="list-group-item">
   <p align="center">
     <strong>MOBILE:</strong>
     <%= @leavedetail.avl_mobile %>
   </p>
+  </li>
 
+  <li class="list-group-item">
   <p align="center">
     <strong>EMAIL:</strong>
     <%= @leavedetail.avl_email %>
   </p>
+</li>
+
 </div>
+</ul>
 <div class="footer">
   <marquee><p><b>Employee Managment System!...</b></p></marquee>
 </div>

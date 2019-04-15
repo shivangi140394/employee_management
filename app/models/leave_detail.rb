@@ -11,6 +11,8 @@ class LeaveDetail < ApplicationRecord
 
   validates_format_of :avl_email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
 
+  # scope :all_except, ->(leave_detail) { where.not(id: leave_detail) }
+
   before_validation :absent_from_after_absent_to
 
   def leavedetail_role

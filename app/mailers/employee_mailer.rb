@@ -1,7 +1,11 @@
 class EmployeeMailer < ApplicationMailer
-  def welcome_email(employee, email)
-     @employee = employee
+
+  # RegistrationMailer.welcome(employee, generated_password).deliver
+  
+  def welcome_email(employee, email, password)
+      @employee = employee
       @url  = 'http://www.gmail.com'
-      mail(to: email, subject: 'Welcome to My Awesome Site')
+      @password = password
+      mail(to: email,  subject: 'Welcome to My Awesome Site')
   end
 end

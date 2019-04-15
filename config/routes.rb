@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root to: "home#index"
   
   resources :employees do
-    resources :addresses , :professional_details
+    resource :address  #:professional_details
     resource :bank_detail
     resource :roles, :designations 
     collection do

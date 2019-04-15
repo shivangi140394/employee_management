@@ -1,31 +1,164 @@
-<div class="panel panel-primary" style="max-width: 40%";>
-  <div class="panel-heading" align="center">Show the Employee Detail</div>
+<div class="panel panel-primary" style="max-width: 80%";>
+  <div class="panel-heading"><h3 align = "center"><b><i> Employee Detail</i></b> </h3></div>
+    <div class="row">
+      <div class="col-md-4 mb-3 mb-md-0">
+         <h3 align="center"><b>Personal Detail</b></h3>
+          <ul class="list-group">
+            <div class="col-md-12">
+              <li class="list-group-item">
+                <p align="center">
+                <strong>Name:</strong>
+                <%= @employee.name %>
+                </p>
+              </li>
+            </div>
 
-  <p align="center">
-    <strong>Name:</strong>
-    <%= @employee.name %>
-  </p>
+            <div class="col-md-12">
+              <li class="list-group-item">
+                <p align="center">
+                <strong>Phone:</strong>
+                <%= @employee.phone %>
+                </p>
+              </li>
+            </div>
 
-  <p align="center">
-    <strong>Phone:</strong>
-    <%= @employee.phone %>
-  </p>
-
-  <p align="center">
-    <strong>Role:</strong>
-    <td><%= @employee.role.name %></td>
-  </p>
+            <div class="col-md-12">
+              <li class="list-group-item">
+                <p align="center">
+                <strong>Role:</strong>
+               <%= @employee.role.name %>
+                </p>
+              </li>
+            </div>
  
-  <p align="center">
-    <strong>Email:</strong>
-    <%= @employee.email %>
-  </p>
+            <div class="col-md-12">
+              <li class="list-group-item">
+                <p align="center">
+                <strong>Email:</strong>
+                <%= @employee.email %>
+                </p>
+              </li>
+            </div>
 
-  <p align="center">
-    <strong>Designation:</strong>
-    <td><%= @employee.designation.name %></td>
-  </p>
-</div>
+            <div class="col-md-12">
+              <li class="list-group-item">
+                <p align="center">
+                <strong>Designation:</strong>
+                <%= @employee.designation.name %>
+                </p>
+              </li>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+          <h3 align="center"><b>Address Detail</b></h3>
+  
+          <div class="col-md-12">
+            <li class="list-group-item">
+              <p align="center">
+              <strong>House-no:</strong>
+             <%= @employee.address.house_no %>
+              </p>
+            </li>
+          </div>
+
+          <div class="col-md-12">
+            <li class="list-group-item">
+              <p align="center">
+              <strong>Street:</strong>
+              <%= @employee.address.street %>
+              </p>
+            </li>
+          </div>
+
+          <div class="col-md-12">
+            <li class="list-group-item">
+              <p align="center">
+              <strong>Local Address:</strong>
+              <%= @employee.address.local_address %>
+              </p>
+            </li>
+          </div>
+
+          <div class="col-md-12">
+            <li class="list-group-item">
+              <p align="center">
+              <strong>Permanent Address:</strong>
+             <%= @employee.address.permanent_address %>
+              </p>
+            </li>
+          </div>
+
+          <div class="col-md-12">
+            <li class="list-group-item">
+              <p align="center">
+              <strong>City:</strong>
+             <%= @employee.address.city %>
+              </p>
+            </li>
+          </div>
+
+          <div class="col-md-12">
+            <li class="list-group-item">
+              <p align="center">
+              <strong>State:</strong>
+              <%= @employee.address.state %>
+              </p>
+            </li>
+          </div>
+
+          <div class="col-md-12">
+            <li class="list-group-item">
+              <p align="center">
+              <strong>Pincode:</strong>
+              <%= @employee.address.pincode %>
+              </p>
+            </li>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+        <h3 align="center"><b>Bank Detail</b></h3>
+ 
+        <div class="col-md-12">
+          <li class="list-group-item">
+            <p align="center">
+            <strong>Account_no:</strong>
+            <%= @employee.bank_detail.account_no %>
+            </p>
+          </li>
+        </div>
+
+        <div class="col-md-12">
+          <li class="list-group-item">
+            <p align="center">
+            <strong>Bank Name:</strong>
+            <%= @employee.bank_detail.bank_name %>
+            </p>
+          </li>
+        </div>
+
+        <div class="col-md-12">
+          <li class="list-group-item">
+            <p align="center">
+            <strong>Branch name:</strong>
+            <%= @employee.bank_detail.branch_name %>
+            </p>
+          </li>
+        </div>
+
+        <div class="col-md-12">
+          <li class="list-group-item">
+            <p align="center">
+            <strong>IFSC code:</strong>
+            <%= @employee.bank_detail.ifsc_code %>
+            </p>
+          </li>
+        </div>
+
+      </div>
+    </div>
+  </ul>
 <div class="footer">
   <marquee><p><b>Employee Managment System!...</b></p></marquee>
 </div>
