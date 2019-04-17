@@ -74,8 +74,20 @@
             <td><%= link_to 'Delete', leave_detail_path(leavedetail),
                     method: :delete,
                     data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
 
+          <% if current_employee_role_is_lead && leavedetail.employee.role.name == "Lead" %>
+            <td><%= leavedetail.absent_to %></td>
+            <td><%= leavedetail.absent_from %></td>
+            <td><%= leavedetail.reason_of_leave %></td> 
+            <td><%= leave_status_name(leavedetail.leave_status_id) %></td> 
+            <td><%= leavedetail.leave_apply_for_days %></td> 
+            <td><%= leavedetail.work_affect %></td>
+            <td><%= leavedetail.avl_mobile %></td>
+            <td><%= leavedetail.avl_email %></td>
           <% elsif current_employee_role_is_lead  %>
+             
+
             <td><%= leavedetail.absent_to %></td>
             <td><%= leavedetail.absent_from %></td>
             <td><%= leavedetail.reason_of_leave %></td> 

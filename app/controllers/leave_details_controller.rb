@@ -21,7 +21,6 @@ class LeaveDetailsController < ApplicationController
   end
 
   def create
-    binding.pry
     @leavedetail = current_employee.leave_details.create(leavedetail_params)
     if @leavedetail.save
       flash[:success] = "You have successfully apply for leave!"

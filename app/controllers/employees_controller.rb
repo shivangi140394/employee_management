@@ -14,28 +14,29 @@ class EmployeesController < ApplicationController
 
   def create
     password_length = 6
-    @password = Devise.friendly_token.first(password_length)
+    password = Devise.friendly_token.first(password_length)
     @employee = Employee.new(new_employee_params)
-    @employee.password = @password
-    #@employee = Employee.create(new_employee_params)
+    @employee.personal_password = password
+    @employee.password = password
+    # @employee = Employee.create(new_employee_params)
     # @employee.password = SecureRandom.hex(8)
     unless @employee.save
       flash[:error] = @employee.errors.full_messages
       render 'new'
     else
-       flash[:success] = "Thanks to create a new user!" 
+      flash[:success] = "Thanks to create a new user!" 
+      redirect_to root_path
     end 
   end
 
-  def edit 
+  def edit
     @employee = Employee.find_by(id: params[:id])
-    @bank_detail = @employee.build_bank_detail
-    # @professional_detail = @employee.build_professional_detail
-    # @address = @employee.addresses.new
-    @address = @employee.build_address
+    # @bank_detail = @employee.build_bank_detail
+    # @address = @employee.build_address
   end
 
   def update
+    binding.pry
     @employee = Employee.find(params[:id])
     # @employee.update(new_employee_params)
     @bank_detail = @employee.create_bank_detail(bank_detail_params)
@@ -44,7 +45,7 @@ class EmployeesController < ApplicationController
     # @address = @employee.addresses.create(address_params)
     @address = @employee.create_address(address_params)
     if @employee.update(new_employee_params) 
-      flash[:success] = "You have successfully apply for leave!" 
+      flash[:success] = "You have successfully update your profile!" 
       redirect_to root_path
     else
       flash[:error] = @employee.errors.full_messages
@@ -59,18 +60,16 @@ class EmployeesController < ApplicationController
   end
 
   def send_email
-    @employee = Employee.find(params[:id])
-    EmployeeMailer.welcome_email(@employee, params[:email], params[:password]).deliver_now
-    redirect_to root_path
   end
 
   private
 
    
     def new_employee_params
-      params.require(:employee).permit(:role_id, :designation_id, :email, :password, :password_confirmation, :name, :phone, :lead, bank_details_attributes:
-     [:account_no, :bank_name, :branch_name, :ifsc_code], addresses_attributes: [:house_no, :street, :local_address, :permanent_address, :city, :state, :pincode])
+      params.require(:employee).permit(:role_id, :designation_id, :email, :personal_email, :personal_password, :password, :password_confirmation, :name, :phone, :lead, bank_detail_attributes:
+     [:account_no, :bank_name, :branch_name, :ifsc_code], address_attributes: [:house_no, :street, :local_address, :permanent_address, :city, :state, :pincode])
     end
+
     def bank_detail_params
       params[:employee][:bank_detail_attributes].permit(:account_no, :bank_name, :branch_name, :ifsc_code)
     end

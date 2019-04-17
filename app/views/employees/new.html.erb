@@ -9,6 +9,7 @@
       <%= form_for @employee, :url =>  employees_path, method: :post, remote: true, :html => {:class => "form-horizontal center"} do |form| %>
 
         <div class="form-group">
+
           <%= form.label :Role, class: "col-md-1 control-label" %><br>
             <div class="col-md-12">
             <%= form.collection_select :role_id, Role.order(:name),:id,:name, {include_blank: "SELECT"}, {class: "form-control"} %>
@@ -26,12 +27,9 @@
         <div class="form-group">
           <%= form.label :Email, class: "col-md-1 control-label"%><br>
             <div class="col-md-12">
-            <%= form.email_field :email, class: "form-control" %>
+            <%= form.email_field :email,  :uniqueness => true, class: "form-control" %>
             </div>
         </div>
-
-
-       
     
           <!-- <div class="form-group">
           <div class="field">
@@ -59,19 +57,39 @@
             <div class="col-md-12">
             <%= form.collection_select :lead, lead_list, :name, :name, {include_blank: "Please select the lead..."}, {class: "form-control"}%>
             </div>
-        </div>
-        <%= form.submit "Submit", class: "btn btn-primary" %> 
+          </div>
+
+           <%= form.button_tag "NEXT", :type => 'button', class: "btn btn-primary", 'data-toggle' => "modal", 'data-target' => "#modal-window" %>
+
+           <div class="modal fade" id="modal-window" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">x</button>
+                    <h4 class="modal-title" id="myModalLabel">Enter Email</h4>
+                  </div>
+                    <div class="modal-body">
+                      <p>
+                        <%= form.text_field_tag "employee[personal_email]"%>
+                        <%= form.hidden_field_tag "employee[personal_password]", @password %>
+                      </p>
+                      <div class="modal-footer">
+                        <%= form.submit %>
+                      </div>
+                    </div>
+                </div>
+            </div>
+          </div> 
+        <%#= form.submit "Submit", class: "btn btn-primary", 'data-toggle' => "modal", 'data-target' => "#modal-window"%>      
         <%end%>
       </div>
     </div>
   </div>
 </div>
+
 <div class="footer">
   <marquee><p><b>Employee Managment System!...</b></p></marquee>
 </div>
 
-<div id="modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content"></div>
-  </div>
-</div>
+
+

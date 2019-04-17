@@ -1,6 +1,8 @@
 class Employee < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  attr_accessor :personal_email, :personal_password
+
   devise :database_authenticatable,
          :recoverable, :rememberable, :validatable            
   has_one :address, dependent: :destroy
@@ -13,10 +15,16 @@ class Employee < ApplicationRecord
   # attr_accessor :email, :password, :password_confirmation, :role_attributes, :designation_attributes
   # accepts_nested_attributes_for :role, :designation
 
-  validates :email, uniqueness: true
+ validates_uniqueness_of :email
 
   accepts_nested_attributes_for :bank_detail
   accepts_nested_attributes_for :professional_detail
   accepts_nested_attributes_for :address
 
+
+  after_create :send_mail_to_employee
+
+  def send_mail_to_employee
+    EmployeeMailer.welcome_email(self, self.personal_email, self.personal_password ).deliver_now
+  end
 end
