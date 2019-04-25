@@ -1,11 +1,11 @@
 class LeaveDetailsController < ApplicationController
   
   def index
-    if current_employee.role.name == 'Admin' 
+    if current_employee.role.name == 'admin' 
       @leavedetails = LeaveDetail.order("created_at DESC")
-    elsif current_employee.role.name == 'HR' 
-      @leavedetails = LeaveDetail.all_except(current_employee.leave_details).order("created_at DESC")
-    elsif current_employee.role.name == 'Lead' 
+    elsif current_employee.role.name == 'hr' 
+      @leavedetails = LeaveDetail.all.except(current_employee.leave_details).order("created_at DESC")
+    elsif current_employee.role.name == 'lead' 
       @leavedetails = current_employee.leave_details.order("created_at DESC")
     else 
       @leavedetails = current_employee.leave_details.order("created_at DESC")

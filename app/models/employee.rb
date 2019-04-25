@@ -27,4 +27,5 @@ class Employee < ApplicationRecord
   def send_mail_to_employee
     EmployeeMailer.welcome_email(self, self.personal_email, self.personal_password ).deliver_now
   end
+
 end

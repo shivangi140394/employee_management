@@ -1,4 +1,4 @@
- <div class="row">
+  <div class="row">
    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
     <div class="panel panel-primary">
       <div class="panel-heading">
@@ -7,8 +7,8 @@
       <br>
 
       <%= form_for @employee, :url => employee_path, method: :put, :html => {:class => "form-horizontal center"} do |f| %>
-        <div class="row">
-          <div class="col-sm-6 mb-3 mb-md-0">
+        <!-- <div class="row">
+          <div class="col-sm-6 mb-3 mb-md-0"> -->
             <div class="panel panel-primary">
               <div class="panel-heading">
                 <h3 align = "center"><b><i>Personal Details</i></b> </h3>
@@ -72,77 +72,113 @@
                         </div>
                       </div>
                     </div>
+
+                  </div>
+                </div>
+
+               <%= f.submit "Submit", class: "btn btn-primary btn-lg center-block" %>
+            <%end%>
+
+             <div class="panel panel-primary">
+               <div class="panel-body">
+                  <div class="row">
+                    <% if current_employee.address.present?%>
+                      <div class="col-sm-6 mb-3 mb-md-0">
+                        <h4><b><%= link_to('Edit Address Detail',  employee_address_path(current_employee)) %></b></h4>
+                      </div>
+                    <%else%>
+                      <div class="col-sm-6 mb-3 mb-md-0">
+                        <h4><b><%= link_to('Create Address Detail', new_employee_address_path(current_employee)) %></b></h4>
+                      </div>
+                    <%end%>
+
+                    <% if current_employee.bank_detail.present?%>
+                      <div class="col-sm-6">
+                        <h4><b><%= link_to('Edit Bank Detail',  employee_bank_detail_path(current_employee)) %></b></h4>
+                      </div>
+                    <% else %>
+                      <div class="col-sm-6">
+                        <h4><b><%= link_to('Create Bank Detail', new_employee_bank_detail_path(current_employee)) %></b></h4>
+                      </div>
+                    <%end%>
                   </div>
                 </div>
               </div>
-  
-              <!-- Address..   -->
-              <div class="col-sm-6">
+            </div>
+          </div>
+        </div>
+
+
+                
+        
+   
+            <!--   Address..   -->
+        <!--       <div class="col-sm-6">
                 <div class="panel panel-primary">
                   <div class="panel-heading">
                     <h3 align = "left"><b><i>Add Address Details</i></b></h3>
                   </div>
                   <div class="panel-body">
-                  <%= f.fields_for :address do |f| %>
+                  <%#= f.fields_for :address do |f| %>
 
                   <div class="form-group">
                     <div class="col-md-12">
-                    <%= f.label :House_No, class: "col-md-0 control-label" %><br>
-                    <%= f.text_field :house_no, :required => true, class: "form-control" %>
+                    <%#= f.label :House_No, class: "col-md-0 control-label" %><br>
+                    <%#= f.text_field :house_no, :required => true, class: "form-control" %>
                     </div>
                   </div>
  
                   <div class="form-group">
                     <div class="col-md-12">
-                    <%= f.label :Street, class: "col-md-0 control-label" %><br>
-                    <%= f.text_field :street, :required => true, class: "form-control"%>
+                    <%#= f.label :Street, class: "col-md-0 control-label" %><br>
+                    <%#= f.text_field :street, :required => true, class: "form-control"%>
                     </div>
                   </div>
     
                   <div class="form-group">
                     <div class="col-md-12">
-                    <%= f.label :Local_address, class: "col-sm-0 control-label" %><br>
-                    <%= f.text_field :local_address, :required => true, class: "form-control" %>
+                    <%#= f.label :Local_address, class: "col-sm-0 control-label" %><br>
+                    <%#= f.text_field :local_address, :required => true, class: "form-control" %>
                     </div>
                   </div>
   
                   <div class="form-group">
                     <div class="col-md-12">
-                    <%= f.label :Permanent_address, class: "col-md-0 control-label" %><br>
-                    <%= f.text_field :permanent_address, :required => true, class: "form-control" %>
+                    <%#= f.label :Permanent_address, class: "col-md-0 control-label" %><br>
+                    <%#= f.text_field :permanent_address, :required => true, class: "form-control" %>
                     </div>
                   </div>
 
                   <div class="form-group">
                     <div class="col-md-12">
-                    <%= f.label :City, class: "col-md-0 control-label" %><br>
-                    <%= f.text_field :city, :required => true, class: "form-control" %>
+                    <%#= f.label :City, class: "col-md-0 control-label" %><br>
+                    <%#= f.text_field :city, :required => true, class: "form-control" %>
                     </div>
                   </div>
 
                   <div class="form-group">
                     <div class="col-md-12">
-                    <%= f.label :State, class: "col-md-0 control-label" %><br>
-                    <%= f.text_field :state, :required => true, class: "form-control"  %>
+                    <%#= f.label :State, class: "col-md-0 control-label" %><br>
+                    <%#= f.text_field :state, :required => true, class: "form-control"  %>
                     </div>
                   </div>
 
                   <div class="form-group">
                      <div class="col-md-12">
-                    <%= f.label :Pincode, class: "col-md-0 control-label" %><br>
-                    <%= f.text_field :pincode, class: "form-control"  %>
+                    <%#= f.label :Pincode, class: "col-md-0 control-label" %><br>
+                    <%#= f.text_field :pincode, class: "form-control"  %>
                     </div>
                   </div>
-                  <% end %>  
+                  <%# end %>  
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
           
 
 
-    <!-- Bank Detail -->
-    <div class="row">
+     <!-- Bank Detail
+      <div class="row">
       <div class="col-xs-12 col-sm-12 ">
         <div class="panel panel-primary">
           <div class="panel-heading">
@@ -150,41 +186,41 @@
           </div>
             <div class="panel-body">
 
-            <%= f.fields_for :bank_detail do |f| %>
+            <%#= f.fields_for :bank_detail do |f| %>
     
             <div class="form-group">
               <div class="col-md-12">
-              <%= f.label :Account_No, class: "col-md-0 control-label" %><br>
-              <%= f.text_field :account_no,  class: "form-control" %>
+              <%#= f.label :Account_No, class: "col-md-0 control-label" %><br>
+              <%#= f.text_field :account_no,  class: "form-control" %>
               </div>
             </div>
 
    
             <div class="form-group">
               <div class="col-md-12">
-              <%= f.label :Bank_Name, class: "col-md-0 control-label" %><br>
-              <%= f.text_field :bank_name, class: "form-control" %>
+              <%#= f.label :Bank_Name, class: "col-md-0 control-label" %><br>
+              <%#= f.text_field :bank_name, class: "form-control" %>
               </div>
             </div>
 
             <div class="form-group">
                <div class="col-md-12">
-              <%= f.label :Branch_name, class: "col-md-0 control-label" %><br>
-              <%= f.text_field :branch_name, :required => true, class: "form-control" %>
+              <%#= f.label :Branch_name, class: "col-md-0 control-label" %><br>
+              <%#= f.text_field :branch_name, :required => true, class: "form-control" %>
               </div>
             </div>
 
             <div class="form-group">
               <div class="col-md-12">
-              <%= f.label :IFSC_Code, class: "col-md-0 control-label" %><br>
-              <%= f.text_field :ifsc_code, :required => true, class: "form-control" %>
+              <%#= f.label :IFSC_Code, class: "col-md-0 control-label" %><br>
+              <%#= f.text_field :ifsc_code, :required => true, class: "form-control" %>
               </div>
             </div>
-            <%end%>
+            <%#end%>
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   
  <!--  <h3>Add ProfessionalDetails</h3>
   <%#= f.fields_for :professional_detail  do |f| %>
@@ -204,15 +240,15 @@
       <a href="javascript:;" id="addNewImage">Add Multiple Documents</a> 
   <%#end%> -->
   
-          <%= f.submit "Submit", class: "btn btn-primary btn-lg center-block" %>
-        <%end%>
+        <!--   <%#= f.submit "Submit", class: "btn btn-primary btn-lg center-block" %>
+        <%#end%>
       </div>
     </div>
   </div>
 
 <div class="footer">
   <marquee><p><b>Employee Managment System!...</b></p></marquee>
-</div>
+</div> --> 
 <!-- <script type="text/javascript">
 $(document).ready(function(){
   $('#addNewImage').click(function(){
@@ -223,4 +259,4 @@ $(document).ready(function(){
   });
 });
 </script>
- -->
+ --> 

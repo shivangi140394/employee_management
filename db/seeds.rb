@@ -6,10 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Role.create(name: "Admin")
-Role.create(name: "HR")
-Role.create(name: "Employee")
-Role.create(name: "Lead")
+Role.create(name: "admin")
+Role.create(name: "hr")
+Role.create(name: "employee")
+Role.create(name: "lead")
 
 
 Designation.create(name: "Web_Designer")
@@ -27,6 +27,6 @@ LeaveType.create(name: "Half_pay_leave")
 LeaveType.create(name: "Maternity_leave")
 LeaveType.create(name: "Quarantine_leave")
 
-LeaveStatus.create(name: "Approved")
-LeaveStatus.create(name: "Pending")
-LeaveStatus.create(name: "Declined")
+LeaveStatus.create(name: "approved")
+LeaveStatus.create(name: "pending")
+LeaveStatus.create(name: "declined")

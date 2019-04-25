@@ -19,7 +19,7 @@
         <th>ROLE</th>
         <th>STATUS</th>
         <th>SHOW</th>
-        <th>Action</th>
+        <th>ACTION</th>
       <% elsif current_employee_role_is_lead  %>
         <th>TO </th>
         <th>FROM</th>
@@ -45,7 +45,7 @@
     </tr>
     <% @leavedetails.each do |leavedetail| %>
       <tr>
-         <% if current_employee_role_is_hr && leavedetail.employee.role.name == "HR" %>
+         <% if current_employee_role_is_hr && leavedetail.employee.role.name == "hr" %>
             <td><%= leavedetail.absent_to %></td>
             <td><%= leavedetail.absent_from %></td>
             <td><%= leavedetail.reason_of_leave %></td> 
@@ -74,9 +74,10 @@
             <td><%= link_to 'Delete', leave_detail_path(leavedetail),
                     method: :delete,
                     data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
+        <%# end %>
 
-          <% if current_employee_role_is_lead && leavedetail.employee.role.name == "Lead" %>
+        <% elsif current_employee_role_is_lead && leavedetail.employee.role.name == "lead" %>
+            
             <td><%= leavedetail.absent_to %></td>
             <td><%= leavedetail.absent_from %></td>
             <td><%= leavedetail.reason_of_leave %></td> 
@@ -85,25 +86,9 @@
             <td><%= leavedetail.work_affect %></td>
             <td><%= leavedetail.avl_mobile %></td>
             <td><%= leavedetail.avl_email %></td>
-          <% elsif current_employee_role_is_lead  %>
-             
 
-            <td><%= leavedetail.absent_to %></td>
-            <td><%= leavedetail.absent_from %></td>
-            <td><%= leavedetail.reason_of_leave %></td> 
-            <td><%= leave_status_name(leavedetail.leave_status_id) %></td> 
-            <td><%= leavedetail.leave_apply_for_days %></td> 
-            <td><%= leavedetail.work_affect %></td>
-            <td><%= leavedetail.avl_mobile %></td>
-            <td><%= leavedetail.avl_email %></td>
-            <td><%= leavedetail.leavedetail_name%></td>
-            <td><%= leavedetail.leavedetail_designation%></td>
-            <td>    
-              <%= select_tag "current_status", options_from_collection_for_select( leave_status, 'id', 'name'), id: "#{leavedetail.id}" %>
-            </td> 
-            <%= hidden_field_tag 'leave_detail_id', leavedetail.id, id: "#{leavedetail.id}",class: "hello" %>
+        <% elsif current_employee_role_is_lead  %>
 
-            <% else %>
               <td><%= leavedetail.absent_to %></td>
               <td><%= leavedetail.absent_from %></td>
               <td><%= leavedetail.reason_of_leave %></td> 
@@ -112,6 +97,25 @@
               <td><%= leavedetail.work_affect %></td>
               <td><%= leavedetail.avl_mobile %></td>
               <td><%= leavedetail.avl_email %></td>
+              <td><%= leavedetail.leavedetail_name%></td>
+              <td><%= leavedetail.leavedetail_designation%></td>
+              <td>    
+                <%= select_tag "current_status", options_from_collection_for_select( leave_status, 'id', 'name'), id: "#{leavedetail.id}" %>
+              </td> 
+              <%= hidden_field_tag 'leave_detail_id', leavedetail.id, id: "#{leavedetail.id}",class: "hello" %>
+              
+
+       <% else %>
+
+              <td><%= leavedetail.absent_to %></td>
+              <td><%= leavedetail.absent_from %></td>
+              <td><%= leavedetail.reason_of_leave %></td> 
+              <td><%= leave_status_name(leavedetail.leave_status_id) %></td> 
+              <td><%= leavedetail.leave_apply_for_days %></td> 
+              <td><%= leavedetail.work_affect %></td>
+              <td><%= leavedetail.avl_mobile %></td>
+              <td><%= leavedetail.avl_email %></td> 
+              
           <% end %>
         </tr>
       <% end %>

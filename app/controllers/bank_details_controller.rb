@@ -1,5 +1,9 @@
 class BankDetailsController < ApplicationController
 
+  def show
+    @bank_detail = BankDetail.find_by(params[:id])
+  end
+
   def new
     @bank_detail = current_employee.build_bank_detail 
   end
@@ -9,8 +13,19 @@ class BankDetailsController < ApplicationController
     redirect_to root_path
   end
 
+  def edit
+    @bank_detail = current_employee.build_bank_detail
+  end
+
+  def update
+     @bank_detail = current_employee.create_bank_detail(bank_details_params)
+  end
+
+
   private
     def bank_details_params
       params.require(:bank_detail).permit(:account_no, :bank_name, :branch_name, :ifsc_code)
     end
 end
+
+

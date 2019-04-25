@@ -44,6 +44,7 @@ gem 'carrierwave', '~> 1.0'
 gem "cocoon"
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.3.1'
+gem "cancancan"
 # gem 'popper_js', '~> 1.14.5'
 
 group :development, :test do

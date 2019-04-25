@@ -1,27 +1,56 @@
-<h3>Fill The address Details</h3>
+ <div class="row">
+   <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 align = "center"><b><i>Update Profile</i></b> </h3>
+      </div>
+      <br>
 
-  <%= form_for @bank_detail, :url =>  employee_bank_detail_path, method: :post do |form| %>
-    <p>
-      <%= form.label :Account_No %><br>
-      <%= form.text_field :account_no %>
-    </p>
+  <%= form_for @bank_detail, :url => employee_bank_detail_path, method: :post do |f| %>
+             
+      <div class="row">
+      <div class="col-xs-12 col-sm-12 ">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 align = "center"><b><i> Add Bank Details</i></b></h3>
+          </div>
+            <div class="panel-body">
+
+          
+            <div class="form-group">
+              <div class="col-md-12">
+              <%= f.label :Account_No, class: "col-md-0 control-label" %><br>
+              <%= f.text_field :account_no,  class: "form-control" %>
+              </div>
+            </div>
+
    
-    <p>
-      <%= form.label :Bank_Name %><br>
-      <%= form.text_field :bank_name %>
-    </p>
+            <div class="form-group">
+              <div class="col-md-12">
+              <%= f.label :Bank_Name, class: "col-md-0 control-label" %><br>
+              <%= f.text_field :bank_name, class: "form-control" %>
+              </div>
+            </div>
 
-    <p>
-      <%= form.label :Branch_name %><br>
-      <%= form.text_field :branch_name %>
-    </p>
+            <div class="form-group">
+               <div class="col-md-12">
+              <%= f.label :Branch_name, class: "col-md-0 control-label" %><br>
+              <%= f.text_field :branch_name, :required => true, class: "form-control" %>
+              </div>
+            </div>
 
-    <p>
-      <%= form.label :IFSC_Code %><br>
-      <%= form.text_field :ifsc_code %>
-    </p>
-   
-    <p>
-      <%= form.submit %>
-    </p>
-  <% end %>
+            <div class="form-group">
+              <div class="col-md-12">
+              <%= f.label :IFSC_Code, class: "col-md-0 control-label" %><br>
+              <%= f.text_field :ifsc_code, :required => true, class: "form-control" %>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <%= f.submit "Submit", class: "btn btn-primary btn-lg center-block" %>
+  <%end%>
+  </div>
+</div>
+</div>

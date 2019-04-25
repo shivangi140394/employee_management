@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resource :address  #:professional_details
     resource :bank_detail
     resource :roles, :designations 
+    get :create_address, on: :member
     collection do
       # get 'update_image'
     end

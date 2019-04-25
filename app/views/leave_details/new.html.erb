@@ -10,7 +10,7 @@
       <div class="form-group">
         <div class="col-md-12">
           <%= g.label :Leave_Type %><br>
-          <%= g.collection_select :leave_type_id, LeaveType.order(:name),:id,:name, {include_blank: "SELECT"}, {class: "form-control"} %>
+          <%= g.collection_select :leave_type_id, leave_type,:id,:name, {include_blank: "SELECT"}, {class: "form-control"} %>
         </div>
       </div>
   
@@ -63,7 +63,7 @@
         </div>
       </div>
   
-      <%= g.hidden_field :leave_status_id, value: '2'%>
+      <%= g.hidden_field :leave_status_id, value: '8'%>
 
       <%= g.submit "Submit", class: "btn btn-primary" %>
       <% end %>

@@ -27,7 +27,6 @@ class LeaveDetail < ApplicationRecord
     self.employee.designation.name
   end
 
-
   private
 
   def absent_from_after_absent_to

@@ -1,4 +1,5 @@
 class EmployeesController < ApplicationController
+  # load_and_authorize_resource
 
   def index
     @employees = Employee.all
@@ -33,20 +34,20 @@ class EmployeesController < ApplicationController
     @employee = Employee.find_by(id: params[:id])
     # @bank_detail = @employee.build_bank_detail
     # @address = @employee.build_address
+  
   end
 
   def update
-    binding.pry
     @employee = Employee.find(params[:id])
     # @employee.update(new_employee_params)
-    @bank_detail = @employee.create_bank_detail(bank_detail_params)
+    # @bank_detail = @employee.create_bank_detail(bank_detail_params)
     # @professional_detail = @employee.create_professional_detail(professional_detail_attributes_params)
     # @professional_detail.images.create(professional_detail_params)
     # @address = @employee.addresses.create(address_params)
-    @address = @employee.create_address(address_params)
+    # @address = @employee.create_address(address_params)
     if @employee.update(new_employee_params) 
       flash[:success] = "You have successfully update your profile!" 
-      redirect_to root_path
+      redirect_to edit_employee_path
     else
       flash[:error] = @employee.errors.full_messages
       render 'edit'
@@ -57,9 +58,6 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
     @employee.destroy
     redirect_to root_path
-  end
-
-  def send_email
   end
 
   private

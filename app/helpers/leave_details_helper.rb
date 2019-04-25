@@ -5,7 +5,7 @@ module LeaveDetailsHelper
   end
 
   def current_employee_role_is_admin
-    if current_employee.role.name == 'Admin' 
+    if current_employee.role.name == 'admin' 
       return true
     else
       return false
@@ -13,7 +13,7 @@ module LeaveDetailsHelper
   end
 
   def current_employee_role_is_hr
-    if current_employee.role.name == 'HR'
+    if current_employee.role.name == 'hr'
       return true
     else
       return false
@@ -21,7 +21,7 @@ module LeaveDetailsHelper
   end
 
   def current_employee_role_is_lead
-    if  current_employee.role.name == 'Lead' 
+    if  current_employee.role.name == 'lead' 
       return true
     else
       return false
@@ -32,4 +32,8 @@ module LeaveDetailsHelper
     @leavestatus = LeaveStatus.find_by_id(id)
     @leavestatus.name
   end  
+
+  def leave_type
+    LeaveType.order(:name)
+  end
 end
