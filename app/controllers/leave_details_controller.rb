@@ -33,7 +33,7 @@ class LeaveDetailsController < ApplicationController
   end
 
   def show_traniee
-    employee_ids = Employee.where(lead: current_employee.name).pluck(:id)
+    employee_ids = Employee.where(lead: current_employee).pluck(:id)
     @leavedetails = LeaveDetail.where(employee_id: employee_ids)
     render 'index'
   end

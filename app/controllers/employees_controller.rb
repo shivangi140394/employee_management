@@ -1,5 +1,5 @@
 class EmployeesController < ApplicationController
-  # load_and_authorize_resource
+  before_action :authenticate_employee!
 
   def index
     @employees = Employee.all
@@ -32,9 +32,21 @@ class EmployeesController < ApplicationController
 
   def edit
     @employee = Employee.find_by(id: params[:id])
+    @employee = current_employee
     # @bank_detail = @employee.build_bank_detail
     # @address = @employee.build_address
   
+  end
+
+  def update_password
+    binding.pry
+    @employee = current_employee
+    if @employee.update_with_password(new_employee_params)
+      bypass_sign_in @employee, scope: :employee
+      redirect_to root_path
+    else
+      render "edit"
+    end
   end
 
   def update
@@ -47,7 +59,7 @@ class EmployeesController < ApplicationController
     # @address = @employee.create_address(address_params)
     if @employee.update(new_employee_params) 
       flash[:success] = "You have successfully update your profile!" 
-      redirect_to edit_employee_path
+      redirect_to root_path
     else
       flash[:error] = @employee.errors.full_messages
       render 'edit'

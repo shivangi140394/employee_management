@@ -27,4 +27,10 @@ Rails.application.routes.draw do
 
   resources :images
 
+  resource :employee, only: [:edit] do
+  collection do
+    patch 'update_password'
+  end
+end
+
 end

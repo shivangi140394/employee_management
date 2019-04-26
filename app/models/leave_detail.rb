@@ -35,5 +35,13 @@ class LeaveDetail < ApplicationRecord
     if absent_from < absent_to
       errors.add(:absent_from, "must be after the start date")
     end
+
+    if absent_to.present? && absent_to < Date.today
+      errors.add(:absent_to, "Date can't be in the past")
   end 
+
+  if absent_from.present? && absent_from < Date.today
+      errors.add(:absent_from, "can't be in the past")
+  end 
+  end
 end

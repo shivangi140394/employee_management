@@ -6,7 +6,7 @@
       </div>
       <br>
 
-      <%= form_for @employee, :url => employee_path, method: :put, :html => {:class => "form-horizontal center"} do |f| %>
+      <%= form_for @employee, :url => employee_path, :action => "update_password",  method: :put, :html => {:class => "form-horizontal center"} do |f| %>
         <!-- <div class="row">
           <div class="col-sm-6 mb-3 mb-md-0"> -->
             <div class="panel panel-primary">
@@ -44,26 +44,42 @@
                       </div>
                     </div>
 
+                     <div class="form-group">
+                      <div class="col-md-12">
+                      <%= f.label :Lead,class: "col-md-0 control-label" %><br>
+                      <b><%= employee_lead(@employee.lead) %></b>
+                      </div>
+                    </div>
+
                     <div class="form-group">
                       <div class="col-md-12">
                       <%= f.label :Email, class: "col-md-0 control-label"%><br>
                       <%= f.text_field :email, class: "form-control" %>
                       </div>
                     </div>
-    
+
                     <div class="form-group">
                       <div class="col-md-12">
                         <div class="field">
-                          <%= f.label :password, class: "col-md-0 control-label"%>
+                          <%= f.label :Current_Password, class: "col-md-0 control-label"%>
                           <% if @minimum_password_length %>
                           <%= @employee.password.inspect %>
                           <em>(<%= @minimum_password_length %> characters minimum)</em>
                           <% end %><br />
-                          <%= f.password_field :password, autocomplete: "new-password", class: "form-control"  %>
+                          <%= f.password_field :current_password, autocomplete: "new-password", class: "form-control"  %>
                         </div>
                       </div>
                     </div>
   
+                    <div class="form-group">
+                      <div class="col-md-12">
+                        <div class="field">
+                          <%= f.label :Password,  "Password",  class: "col-md-0 control-label" %><br />
+                          <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+                        </div>
+                      </div>
+                    </div>
+
                     <div class="form-group">
                       <div class="col-md-12">
                         <div class="field">
@@ -72,7 +88,7 @@
                         </div>
                       </div>
                     </div>
-
+                  
                   </div>
                 </div>
 
@@ -82,7 +98,7 @@
              <div class="panel panel-primary">
                <div class="panel-body">
                   <div class="row">
-                    <% if current_employee.address.present?%>
+                    <% if current_employee.address.present? %>
                       <div class="col-sm-6 mb-3 mb-md-0">
                         <h4><b><%= link_to('Edit Address Detail',  employee_address_path(current_employee)) %></b></h4>
                       </div>
