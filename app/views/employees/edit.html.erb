@@ -1,21 +1,16 @@
-  <div class="row">
-   <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-sm-offset-3">
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 align = "center"><b><i>Update Profile</i></b> </h3>
       </div>
       <br>
-
       <%= form_for @employee, :url => employee_path, :action => "update_password",  method: :put, :html => {:class => "form-horizontal center"} do |f| %>
-        <!-- <div class="row">
-          <div class="col-sm-6 mb-3 mb-md-0"> -->
-            <div class="panel panel-primary">
-              <div class="panel-heading">
-                <h3 align = "center"><b><i>Personal Details</i></b> </h3>
-               </div>
-                  <div class="panel-body">
-                    
-
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 align = "center"><b><i>Personal Details</i></b> </h3>
+            </div>
+            <div class="panel-body">       
                     <div class="form-group">
                       <div class="col-md-12">
                       <%= f.label :Name, class: "col-md-0 control-label"%><br>
@@ -95,34 +90,34 @@
                <%= f.submit "Submit", class: "btn btn-primary btn-lg center-block" %>
             <%end%>
 
-             <div class="panel panel-primary">
-               <div class="panel-body">
-                  <div class="row">
-                    <% if current_employee.address.present? %>
-                      <div class="col-sm-6 mb-3 mb-md-0">
-                        <h4><b><%= link_to('Edit Address Detail',  employee_address_path(current_employee)) %></b></h4>
-                      </div>
-                    <%else%>
-                      <div class="col-sm-6 mb-3 mb-md-0">
-                        <h4><b><%= link_to('Create Address Detail', new_employee_address_path(current_employee)) %></b></h4>
-                      </div>
-                    <%end%>
+            <div class="panel panel-primary">
+              <div class="panel-body">
+                <div class="row">
+                  <% if current_employee.address.present? %>
+                    <div class="col-sm-6 mb-3 mb-md-0">
+                      <h4><b><%= link_to('Edit Address Detail',  employee_address_path(current_employee)) %></b></h4>
+                    </div>
+                  <%else%>
+                    <div class="col-sm-6 mb-3 mb-md-0">
+                      <h4><b><%= link_to('Create Address Detail', new_employee_address_path(current_employee)) %></b></h4>
+                    </div>
+                  <%end%>
 
-                    <% if current_employee.bank_detail.present?%>
-                      <div class="col-sm-6">
-                        <h4><b><%= link_to('Edit Bank Detail',  employee_bank_detail_path(current_employee)) %></b></h4>
-                      </div>
-                    <% else %>
-                      <div class="col-sm-6">
-                        <h4><b><%= link_to('Create Bank Detail', new_employee_bank_detail_path(current_employee)) %></b></h4>
-                      </div>
-                    <%end%>
-                  </div>
+                  <% if current_employee.bank_detail.present?%>
+                    <div class="col-sm-6">
+                      <h4><b><%= link_to('Edit Bank Detail',  employee_bank_detail_path(current_employee)) %></b></h4>
+                    </div>
+                  <% else %>
+                    <div class="col-sm-6">
+                      <h4><b><%= link_to('Create Bank Detail', new_employee_bank_detail_path(current_employee)) %></b></h4>
+                    </div>
+                  <%end%>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
 
                 

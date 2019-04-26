@@ -32,14 +32,12 @@ class EmployeesController < ApplicationController
 
   def edit
     @employee = Employee.find_by(id: params[:id])
-    @employee = current_employee
     # @bank_detail = @employee.build_bank_detail
     # @address = @employee.build_address
   
   end
 
   def update_password
-    binding.pry
     @employee = current_employee
     if @employee.update_with_password(new_employee_params)
       bypass_sign_in @employee, scope: :employee
