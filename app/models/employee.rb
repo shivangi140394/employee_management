@@ -4,7 +4,7 @@ class Employee < ApplicationRecord
   attr_accessor :personal_email, :personal_password
 
   devise :database_authenticatable,
-         :recoverable, :rememberable, :validatable            
+         :recoverable, :rememberable, :validatable, :registerable            
   has_one :address, dependent: :destroy
   has_many :leave_details, dependent: :destroy
   has_one :professional_detail, dependent: :destroy

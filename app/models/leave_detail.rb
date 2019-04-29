@@ -3,7 +3,7 @@ class LeaveDetail < ApplicationRecord
   belongs_to :leave_type
   belongs_to :leave_status
 
-  validates :absent_to, :absent_from, presence: true
+  validates :absent_to, :absent_from, :leave_apply_for_days, presence: true
 
   validates :avl_mobile,   :presence => {:message => 'hello world, bad operation!'},
                      :numericality => true,
@@ -30,18 +30,21 @@ class LeaveDetail < ApplicationRecord
   private
 
   def absent_from_after_absent_to
-    return if absent_from.blank? || absent_to.blank?
+    return if absent_from.blank? || absent_to.blank? || leave_apply_for_days?
+     
+      if leave_apply_for_days < (absent_from - absent_to).to_i
+        errors.add(:absent_to, "Apply leave days is greater than leave apply for the days")
 
-    if absent_from < absent_to
-      errors.add(:absent_from, "must be after the start date")
-    end
+      elsif absent_from < absent_to
+        errors.add(:absent_from, "must be after the start date")
+     
 
-    if absent_to.present? && absent_to < Date.today
-      errors.add(:absent_to, "Date can't be in the past")
-  end 
+      elsif absent_to.present? && absent_to < Date.today
+        errors.add(:absent_to, "Date can't be in the past")
+      
 
-  if absent_from.present? && absent_from < Date.today
-      errors.add(:absent_from, "can't be in the past")
-  end 
+      elsif absent_from.present? && absent_from < Date.today
+        errors.add(:absent_from, "can't be in the past")
+    end 
   end
 end

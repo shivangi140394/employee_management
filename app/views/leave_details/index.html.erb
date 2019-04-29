@@ -30,8 +30,8 @@
         <th>MOBILE</th>
         <th>EMAIL</th>
         <th>NAME</th>
-        <th>DESIGNATION</th>
         <th>STATUS</th>
+        <th>DESIGNATION</th>
        <%else%>
         <th>TO </th>
         <th>FROM</th>
@@ -87,22 +87,23 @@
             <td><%= leavedetail.avl_mobile %></td>
             <td><%= leavedetail.avl_email %></td>
 
-       <!--  <%# elsif current_employee_role_is_lead  %>
+      <% elsif current_employee_role_is_lead  %>
 
-              <td><%#= leavedetail.absent_to %></td>
-              <td><%#= leavedetail.absent_from %></td>
-              <td><%#= leavedetail.reason_of_leave %></td> 
-              <td><%#= leave_status_name(leavedetail.leave_status_id) %></td> 
-              <td><%#= leavedetail.leave_apply_for_days %></td> 
-              <td><%#= leavedetail.work_affect %></td>
-              <td><%#= leavedetail.avl_mobile %></td>
-              <td><%#= leavedetail.avl_email %></td>
-              <td><%#= leavedetail.leavedetail_name%></td>
-              <td><%#= leavedetail.leavedetail_designation%></td>
+              <td><%= leavedetail.absent_to %></td>
+              <td><%= leavedetail.absent_from %></td>
+              <td><%= leavedetail.reason_of_leave %></td> 
+              <td><%= leave_status_name(leavedetail.leave_status_id) %></td> 
+              <td><%= leavedetail.leave_apply_for_days %></td> 
+              <td><%= leavedetail.work_affect %></td>
+              <td><%= leavedetail.avl_mobile %></td>
+              <td><%= leavedetail.avl_email %></td>
+              <td><%= leavedetail.leavedetail_name%></td>
+              <td><%= leavedetail.leavedetail_designation%></td>
+              <td><%= link_to 'Show', leave_detail_path(leavedetail) %></td>
               <td>    
-                <%#= select_tag "current_status", options_from_collection_for_select( leave_status, 'id', 'name'), id: "#{leavedetail.id}" %>
+                <%= select_tag "current_status", options_from_collection_for_select( leave_status, 'id', 'name'), id: "#{leavedetail.id}" %>
               </td> 
-              <%#= hidden_field_tag 'leave_detail_id', leavedetail.id, id: "#{leavedetail.id}",class: "hello" %> -->
+              <%= hidden_field_tag 'leave_detail_id', leavedetail.id, id: "#{leavedetail.id}",class: "hello" %>
        
         <% else %>
 
@@ -113,8 +114,7 @@
               <td><%= leavedetail.leave_apply_for_days %></td> 
               <td><%= leavedetail.work_affect %></td>
               <td><%= leavedetail.avl_mobile %></td>
-              <td><%= leavedetail.avl_email %></td> 
-              
+              <td><%= leavedetail.avl_email %></td>        
           <% end %>
         </tr>
       <% end %>
@@ -133,7 +133,7 @@
   for(i=0; i<array.length; i++)
   {
     $("#"+array[i]).on("click", function(){ 
-      debugger
+      // debugger
       var leave_detail_id = this.id
       var status_id =  $(this).val();
       $.ajax({

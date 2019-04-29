@@ -1,5 +1,4 @@
 class EmployeesController < ApplicationController
-  before_action :authenticate_employee!
 
   def index
     @employees = Employee.all
@@ -32,31 +31,17 @@ class EmployeesController < ApplicationController
 
   def edit
     @employee = Employee.find_by(id: params[:id])
-    # @bank_detail = @employee.build_bank_detail
-    # @address = @employee.build_address
-  
-  end
-
-  def update_password
     @employee = current_employee
-    if @employee.update_with_password(new_employee_params)
-      bypass_sign_in @employee, scope: :employee
-      redirect_to root_path
-    else
-      render "edit"
-    end
+  
   end
 
   def update
     @employee = Employee.find(params[:id])
-    # @employee.update(new_employee_params)
-    # @bank_detail = @employee.create_bank_detail(bank_detail_params)
     # @professional_detail = @employee.create_professional_detail(professional_detail_attributes_params)
     # @professional_detail.images.create(professional_detail_params)
-    # @address = @employee.addresses.create(address_params)
-    # @address = @employee.create_address(address_params)
-    if @employee.update(new_employee_params) 
-      flash[:success] = "You have successfully update your profile!" 
+    if current_employee.update_with_password(new_employee_params)
+      bypass_sign_in current_employee
+      flash[:notice] = 'Password updated.'
       redirect_to root_path
     else
       flash[:error] = @employee.errors.full_messages
@@ -74,8 +59,12 @@ class EmployeesController < ApplicationController
 
    
     def new_employee_params
-      params.require(:employee).permit(:role_id, :designation_id, :email, :personal_email, :personal_password, :password, :password_confirmation, :name, :phone, :lead, bank_detail_attributes:
+      params.require(:employee).permit(:role_id, :designation_id, :email, :personal_email, :personal_password, :password, :password_confirmation, :current_password, :name, :phone, :lead, bank_detail_attributes:
      [:account_no, :bank_name, :branch_name, :ifsc_code], address_attributes: [:house_no, :street, :local_address, :permanent_address, :city, :state, :pincode])
+    end
+
+    def new_parmas
+      params.require(:employee).permit(:role_id, :designation_id, :email, :personal_email, :personal_password, :password, :password_confirmation, :current_password,:name, :phone, :lead)
     end
 
     def bank_detail_params

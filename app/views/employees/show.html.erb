@@ -125,6 +125,14 @@
               </p>
             </li>
           </div>
+          <% else %>
+         <div class="col-md-12">
+          <li class="list-group-item">
+            <p align="center">
+            <strong>Details not present</strong>
+            </p>
+          </li>
+        </div>
           <%end%>
         </div>
       
@@ -165,6 +173,14 @@
             <p align="center">
             <strong>IFSC code:</strong>
             <%= @employee.bank_detail.ifsc_code %>
+            </p>
+          </li>
+        </div>
+        <%else%>
+        <div class="col-md-12">
+          <li class="list-group-item">
+            <p align="center">
+            <strong>Details not present</strong>
             </p>
           </li>
         </div>

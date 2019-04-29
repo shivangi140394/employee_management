@@ -45,7 +45,7 @@
       <div class="form-group">
         <div class="col-md-12">
           <%= g.label :Work_Affect,  class: "col-md-0 control-label" %><br>
-          <%= g.select :work_affect, [['No', false], ['Yes', true]], {include_blank: false}, {class: "form-control"} %>
+          <%= g.select :work_affect, [['No', false], ['Yes', true]], {include_blank: false}, class: "form-control" %>
         </div>
       </div>
 
@@ -74,14 +74,16 @@
 <div class="footer">
   <marquee><p><b>Employee Managment System!...</b></p></marquee>
 </div>
+
 <!-- <script type="text/javascript">
-  $('#leave_detail_reason_of_leave').on("click", function(){ 
+    $('#leave_detail_absent_from').on("click", function(){ 
       debugger
-      var from = $("#leave_detail_absent_from").val(); 
+      var days = $("#leave_detail_leave_apply_for_days").val(); 
       var to = $("#leave_detail_absent_to").val(); 
-      if(to > from){
+      var from = $("#leave_detail_absent_from").val(); 
+      if(days < (from - to).to_i){
           alert("Please Fill The Correct Date")
       }
     });
-</script>
- -->
+</script> -->
+
