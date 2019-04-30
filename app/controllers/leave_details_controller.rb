@@ -70,6 +70,6 @@ class LeaveDetailsController < ApplicationController
 
   private
     def leavedetail_params
-      params[:leave_detail].permit(:employee_id, :leave_status_id, :leave_type_id, :leave_type, :leave_apply_for_days, :absent_to, :absent_from, :reason_of_leave, :work_affect, :avl_mobile, :avl_email, :current_status)
+      params[:leave_detail].permit(:employee_id, :leave_status_id, :leave_type_id, :leave_type, :leave_apply_for_days, :applied_date, :absent_to, :absent_from, :reason_of_leave, :work_affect, :avl_mobile, :avl_email, :current_status)
     end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_15_131145) do
+ActiveRecord::Schema.define(version: 2019_04_30_053427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 2019_04_15_131145) do
     t.date "absent_from"
     t.boolean "current_status"
     t.integer "leave_status_id"
+    t.date "applied_date"
   end
 
   create_table "leave_statuses", force: :cascade do |t|

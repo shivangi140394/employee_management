@@ -15,16 +15,14 @@ class Employee::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  def edit
-    binding.pry
-    super
-  end
+  # def edit
+  #   super
+  # end
 
   # PUT /resource
-  def update
-    binding.pry
-    super
-  end
+  # def update
+  #   super
+  # end
 
   # DELETE /resource
   # def destroy

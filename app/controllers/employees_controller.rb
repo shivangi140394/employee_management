@@ -32,7 +32,6 @@ class EmployeesController < ApplicationController
   def edit
     @employee = Employee.find_by(id: params[:id])
     @employee = current_employee
-  
   end
 
   def update
@@ -43,6 +42,9 @@ class EmployeesController < ApplicationController
       bypass_sign_in current_employee
       flash[:notice] = 'Password updated.'
       redirect_to root_path
+    # if @employee.update(new_employee_params) 
+    #    flash[:success] = "You have successfully apply for leave!" 
+    #    redirect_to root_path
     else
       flash[:error] = @employee.errors.full_messages
       render 'edit'
@@ -61,10 +63,6 @@ class EmployeesController < ApplicationController
     def new_employee_params
       params.require(:employee).permit(:role_id, :designation_id, :email, :personal_email, :personal_password, :password, :password_confirmation, :current_password, :name, :phone, :lead, bank_detail_attributes:
      [:account_no, :bank_name, :branch_name, :ifsc_code], address_attributes: [:house_no, :street, :local_address, :permanent_address, :city, :state, :pincode])
-    end
-
-    def new_parmas
-      params.require(:employee).permit(:role_id, :designation_id, :email, :personal_email, :personal_password, :password, :password_confirmation, :current_password,:name, :phone, :lead)
     end
 
     def bank_detail_params

@@ -88,7 +88,7 @@
             <td><%= leavedetail.avl_email %></td>
 
       <% elsif current_employee_role_is_lead  %>
-
+              
               <td><%= leavedetail.absent_to %></td>
               <td><%= leavedetail.absent_from %></td>
               <td><%= leavedetail.reason_of_leave %></td> 
@@ -104,6 +104,11 @@
                 <%= select_tag "current_status", options_from_collection_for_select( leave_status, 'id', 'name'), id: "#{leavedetail.id}" %>
               </td> 
               <%= hidden_field_tag 'leave_detail_id', leavedetail.id, id: "#{leavedetail.id}",class: "hello" %>
+                <% if can? :destroy, current_employee %>
+                 <td><%= link_to 'Delete', leave_detail_path(leavedetail),
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' } %></td>
+                <% end %>
        
         <% else %>
 

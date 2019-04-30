@@ -4,7 +4,7 @@ class Employee < ApplicationRecord
   attr_accessor :personal_email, :personal_password
 
   devise :database_authenticatable,
-         :recoverable, :rememberable, :validatable, :registerable            
+         :recoverable, :rememberable, :validatable
   has_one :address, dependent: :destroy
   has_many :leave_details, dependent: :destroy
   has_one :professional_detail, dependent: :destroy
@@ -26,6 +26,10 @@ class Employee < ApplicationRecord
 
   def send_mail_to_employee
     EmployeeMailer.welcome_email(self, self.personal_email, self.personal_password ).deliver_now
+  end
+
+  def admin?
+    role.name == 'admin'
   end
 
 end

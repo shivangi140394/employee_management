@@ -30,21 +30,19 @@ class LeaveDetail < ApplicationRecord
   private
 
   def absent_from_after_absent_to
-    return if absent_from.blank? || absent_to.blank? || leave_apply_for_days?
-     
-      if leave_apply_for_days < (absent_from - absent_to).to_i
-        errors.add(:absent_to, "Apply leave days is greater than leave apply for the days")
+    if leave_apply_for_days < (absent_from - absent_to).to_i
+      errors.add(:absent_to, "Apply leave days is greater than leave apply for the days")
 
-      elsif absent_from < absent_to
-        errors.add(:absent_from, "must be after the start date")
-     
+    elsif absent_from < absent_to
+      errors.add(:absent_from, "must be after the start date")
+   
 
-      elsif absent_to.present? && absent_to < Date.today
-        errors.add(:absent_to, "Date can't be in the past")
-      
+    elsif absent_to.present? && absent_to < Date.today
+      errors.add(:absent_to, "Date can't be in the past")
+    
 
-      elsif absent_from.present? && absent_from < Date.today
-        errors.add(:absent_from, "can't be in the past")
-    end 
+    elsif absent_from.present? && absent_from < Date.today
+      errors.add(:absent_from, "can't be in the past")
+    end
   end
 end
