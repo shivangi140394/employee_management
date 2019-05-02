@@ -1,4 +1,5 @@
 class ProfessionalDetailsController < ApplicationController
+  load_and_authorize_resource
   
   def index
     @professional_detail = ProfessionalDetail.all

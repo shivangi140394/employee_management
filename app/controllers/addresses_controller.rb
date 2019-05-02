@@ -1,5 +1,5 @@
 class AddressesController < ApplicationController
-  
+    
   def show
     @address = Address.find_by(params[:id])
   end

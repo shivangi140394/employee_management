@@ -1,5 +1,7 @@
 class LeaveDetailsController < ApplicationController
-  
+   load_and_authorize_resource
+   skip_load_and_authorize_resource only: :create
+   skip_load_resource only: :show_hr_leave  
   def index
     if current_employee.role.name == 'admin' 
       @leavedetails = LeaveDetail.order("created_at DESC")

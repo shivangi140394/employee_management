@@ -4,7 +4,7 @@
       <div class="col-md-4 mb-3 mb-md-0">
          <h3 align="center"><b>Personal Detail</b></h3>
           <ul class="list-group">
-
+            
             <div class="col-md-12">
               <li class="list-group-item">
                 <p align="center">
@@ -62,7 +62,7 @@
         
           <div class="col-md-4">
           <h3 align="center"><b>Address Detail</b></h3>
-          <% if  current_employee.address.present? %>  
+          <% if  @employee.address.present? %>  
           <div class="col-md-12">
             <li class="list-group-item">
               <p align="center">
@@ -140,7 +140,7 @@
         <div class="col-md-4">
         <h3 align="center"><b>Bank Detail</b></h3>
  
-      <%if current_employee.bank_detail.present?%>
+      <%if @employee.bank_detail.present?%>
         <div class="col-md-12">
           <li class="list-group-item">
             <p align="center">

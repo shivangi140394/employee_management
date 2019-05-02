@@ -5,7 +5,7 @@
         <h3 align = "center"><b><i>Update Profile</i></b> </h3>
       </div>
       <br>
-      <%= form_for @employee, :url => employee_path, :action => "update_password",  method: :put, :html => {:class => "form-horizontal center"} do |f| %>
+      <%= form_for current_employee, :url => employee_path, :action => "update_password",  method: :put, :html => {:class => "form-horizontal center"} do |f| %>
           <div class="panel panel-primary">
             <div class="panel-heading">
               <h3 align = "center"><b><i>Personal Details</i></b> </h3>
@@ -28,21 +28,21 @@
                     <div class="form-group">
                       <div class="col-md-12">
                       <%= f.label :Role, class: "col-md-0 control-label" %><br>
-                      <b> <%= @employee.role.name %></b>
+                      <b> <%= current_employee.role.name %></b>
                       </div>
                     </div>
    
                     <div class="form-group">
                       <div class="col-md-12">
                       <%= f.label :Designation,class: "col-md-0 control-label" %><br>
-                      <b><%= @employee.designation.name %></b>
+                      <b><%= current_employee.designation.name %></b>
                       </div>
                     </div>
 
                      <div class="form-group">
                       <div class="col-md-12">
                       <%= f.label :Lead,class: "col-md-0 control-label" %><br>
-                      <b><%= employee_lead(@employee.lead) %></b>
+                      <b><%= employee_lead(current_employee.lead) %></b>
                       </div>
                     </div>
 
@@ -58,7 +58,7 @@
                         <div class="field">
                           <%= f.label :Current_Password, class: "col-md-0 control-label"%>
                           <% if @minimum_password_length %>
-                          <%= @employee.password.inspect %>
+                          <%= current_employee.password.inspect %>
                           <em>(<%= @minimum_password_length %> characters minimum)</em>
                           <% end %><br />
                           <%= f.password_field :current_password, autocomplete: "new-password", class: "form-control"  %>

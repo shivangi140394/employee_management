@@ -32,4 +32,16 @@ class Employee < ApplicationRecord
     role.name == 'admin'
   end
 
+  def lead?
+    role.name == 'lead'
+  end
+
+  def hr?
+    role.name == 'hr'
+  end
+
+  def employee?
+    role.name == 'employee'   
+  end
+
 end
