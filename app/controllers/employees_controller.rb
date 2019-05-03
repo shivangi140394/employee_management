@@ -7,12 +7,11 @@ class EmployeesController < ApplicationController
   end
   
   def show
-    if current_employee.admin? || current_employee.id == params[:id].to_i
+     if current_employee.admin? || current_employee.hr? || current_employee.id == params[:id].to_i
       @employee = Employee.find(params[:id])
     else
-      # @employee = current_employee
-      flash[:error] = "You are not authorize to access this page"
-      redirect_to root_path
+      @employee = current_employee
+      flash[:danger] = "You are not authorize to access this page"
     end
   end
 
@@ -29,7 +28,7 @@ class EmployeesController < ApplicationController
     # @employee = Employee.create(new_employee_params)
     # @employee.password = SecureRandom.hex(8)
     unless @employee.save
-      flash[:error] = @employee.errors.full_messages
+      flash[:danger] = @employee.errors.full_messages
       render 'new'
     else
       flash[:success] = "Thanks to create a new user!" 
@@ -52,7 +51,7 @@ class EmployeesController < ApplicationController
     #    flash[:success] = "You have successfully apply for leave!" 
     #    redirect_to root_path
     else
-      flash[:error] = @employee.errors.full_messages
+      flash[:danger] = @employee.errors.full_messages
       render 'edit'
     end 
   end

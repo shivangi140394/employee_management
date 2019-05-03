@@ -16,7 +16,7 @@
             <% if current_employee_role_is_hr %>
             <li><%= link_to('Apply Leave',  new_leave_detail_path(id: current_employee.id)) %></li>
             <li><%= link_to('Edit Profile', edit_employee_path(id: current_employee.id)) %></li>
-            <li><%= link_to('Leave Status',  show_hr_leave_leave_detail_path(id: current_employee.id)) %></li>
+            <li><%= link_to('Leave Status',  show_hr_leave_leave_details_path) %></li>
             <% end %>
              <li><%= link_to('Home',root_path) %></li>
             <li><%= link_to('Show Leave', leave_details_path) %></li>

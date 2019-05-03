@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   resources :leave_details  do
     get :show_traniee, on: :collection
-    get :show_hr_leave, on: :member
+    get :show_hr_leave, on: :collection
     get 'update_status'
     resource :leave_types
     resource :leave_status

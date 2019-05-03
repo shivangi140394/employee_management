@@ -33,7 +33,7 @@
         <th>ROLE</th>
         <th>SHOW</th>
         <th>STATUS</th>
-       <%else%>
+      <%else%>
         <th>TO </th>
         <th>FROM</th>
         <th>REASON</th>
@@ -46,7 +46,7 @@
     </tr>
     <% @leavedetails.each do |leavedetail| %>
       <tr>
-         <% if current_employee_role_is_hr && leavedetail.employee.role.name == "hr" %>
+        <% if current_employee_role_is_hr && leavedetail.employee.role.name == "hr" %>
             <td><%= leavedetail.absent_to %></td>
             <td><%= leavedetail.absent_from %></td>
             <td><%= leavedetail.reason_of_leave %></td> 
@@ -60,22 +60,36 @@
             <td><%= leavedetail.absent_to %></td>
             <td><%= leavedetail.absent_from %></td>
             <td><%= leavedetail.reason_of_leave %></td> 
-            <td><%= leave_status_name(leavedetail.leave_status_id) %></td> 
+
+            <td class="text-success">
+            <a href="#" class="text-success">   
+              <%= leave_status_name(leavedetail.leave_status_id) %></a></td> 
             <td><%= leavedetail.leave_apply_for_days %></td> 
             <td><%= leavedetail.work_affect %></td>
             <td><%= leavedetail.avl_mobile %></td>
             <td><%= leavedetail.avl_email %></td>
             <td><%= leavedetail.leavedetail_name%></td>
             <td><%= leavedetail.leavedetail_role%></td>
-            <td>    
+            <td>
               <%= select_tag "current_status", options_from_collection_for_select( leave_status, 'id', 'name'), id: "#{leavedetail.id}" %>
+           
             </td> 
+
             <%= hidden_field_tag 'leave_detail_id', leavedetail.id, id: "#{leavedetail.id}",class: "hello" %>
-            <td><%= link_to 'Show', leave_detail_path(leavedetail) %></td>
-            <td><%= link_to 'Delete', leave_detail_path(leavedetail),
-                    method: :delete,
-                    data: { confirm: 'Are you sure?' } %></td>
-        <%# end %>
+            
+            <td align = "center">
+              <%= link_to leave_detail_path(leavedetail) do %>
+              <span class="glyphicon glyphicon-eye-open"></span> 
+              <% end %>
+            </td>
+
+            <td align = "center">
+                <%= link_to leave_detail_path(leavedetail), 
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' } do %>
+                <span class="glyphicon glyphicon-trash"></span> 
+                <% end %>
+            </td>
 
         <% elsif current_employee_role_is_lead && leavedetail.employee.role.name == "lead" %>
             
@@ -100,17 +114,28 @@
               <td><%= leavedetail.avl_email %></td>
               <td><%= leavedetail.leavedetail_name%></td>
               <td><%= leavedetail.leavedetail_designation%></td>
-              <td><%= link_to 'Show', leave_detail_path(leavedetail) %></td>
-              <td>    
-                <%= select_tag "current_status", options_from_collection_for_select( leave_status, 'id', 'name'), id: "#{leavedetail.id}" %>
-              </td> 
-              <%= hidden_field_tag 'leave_detail_id', leavedetail.id, id: "#{leavedetail.id}",class: "hello" %>
-                <% if can? :destroy, current_employee %>
-                 <td><%= link_to 'Delete', leave_detail_path(leavedetail),
-                      method: :delete,
-                      data: { confirm: 'Are you sure?' } %></td>
+
+              <td align = "center">
+                <%= link_to leave_detail_path(leavedetail) do %>
+                <span class="glyphicon glyphicon-eye-open"></span> 
                 <% end %>
-       
+              </td>
+
+              <td>    
+              <%= select_tag "current_status", options_from_collection_for_select( leave_status, 'id', 'name'), id: "#{leavedetail.id}" %>
+              </td> 
+
+            <%= hidden_field_tag 'leave_detail_id', leavedetail.id, id: "#{leavedetail.id}",class: "hello" %>
+
+              <% if can? :destroy, current_employee %>
+              <td align = "center">
+                <%= link_to leave_detail_path(leavedetail), 
+                    method: :delete,
+                    data: { confirm: 'Are you sure?' } do %>
+                <span class="glyphicon glyphicon-trash"></span> 
+                <% end %>
+              </td>
+            <% end %>
         <% else %>
 
               <td><%= leavedetail.absent_to %></td>

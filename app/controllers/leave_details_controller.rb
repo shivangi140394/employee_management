@@ -1,12 +1,13 @@
 class LeaveDetailsController < ApplicationController
-   load_and_authorize_resource
-   skip_load_and_authorize_resource only: :create
-   skip_load_resource only: :show_hr_leave  
+    load_and_authorize_resource
+    skip_load_and_authorize_resource only: :create
+     # skip_load_resource only: :show_hr_leave  
+
   def index
     if current_employee.role.name == 'admin' 
       @leavedetails = LeaveDetail.order("created_at DESC")
     elsif current_employee.role.name == 'hr' 
-      @leavedetails = LeaveDetail.all.except(current_employee.leave_details).order("created_at DESC")
+      @leavedetails = LeaveDetail.all_except(current_employee.leave_details).order("created_at DESC")
     elsif current_employee.role.name == 'lead' 
       @leavedetails = current_employee.leave_details.order("created_at DESC")
     else 
@@ -28,7 +29,7 @@ class LeaveDetailsController < ApplicationController
       flash[:success] = "You have successfully apply for leave!"
       redirect_to root_path
     else
-       flash[:error] = @leavedetail.errors.full_messages
+      flash[:danger] = @leavedetail.errors.full_messages
        # flash[:error] = "Sorry!! Try again"
       render 'new'
     end

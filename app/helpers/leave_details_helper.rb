@@ -21,7 +21,7 @@ module LeaveDetailsHelper
   end
 
   def current_employee_role_is_lead
-    if  current_employee.role.name == 'lead' 
+    if  current_employee.role.name == 'lead'  
       return true
     else
       return false

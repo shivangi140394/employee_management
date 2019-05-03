@@ -21,10 +21,18 @@
         <td><%= employee_designation(employee.designation_id) %></td>
         <td><%= employee_lead(employee.lead) %></td>
         <td><%= employee.email %></td>
-        <td><%= link_to 'Show', employee_path(employee) %></td>
-        <td><%= link_to 'Destroy', employee_path(employee),
+        <td align = "center">
+          <%= link_to employee_path(employee) do %>
+          <span class="glyphicon glyphicon-eye-open"></span> 
+          <% end %>
+        </td>
+        <td align = "center">
+          <%= link_to employee_path(employee), 
                 method: :delete,
-                data: { confirm: 'Are you sure?' } %></td>
+                data: { confirm: 'Are you sure?' } do %>
+          <span class="glyphicon glyphicon-trash"></span> 
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </table>
