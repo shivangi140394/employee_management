@@ -61,9 +61,20 @@
             <td><%= leavedetail.absent_from %></td>
             <td><%= leavedetail.reason_of_leave %></td> 
 
-            <td class="text-success">
-            <a href="#" class="text-success">   
-              <%= leave_status_name(leavedetail.leave_status_id) %></a></td> 
+            <td>
+            <%#= leave_status_name(leavedetail.leave_status_id) %>
+            <%# if leavedetail.leave_status.name == "declined" %>
+               <!--  <div class="red">declined
+                </div>
+            <%# elsif leavedetail.leave_status.name == "pending" %>
+                <div class = "blue">pending
+                </div>
+            <%# else leavedetail.leave_status.name == "approved" %> 
+                <div class = "green">approved
+                </div>         -->
+            <%# end %>
+            <%=  leave_update_status(leavedetail.leave_status_id) %>
+            </td> 
             <td><%= leavedetail.leave_apply_for_days %></td> 
             <td><%= leavedetail.work_affect %></td>
             <td><%= leavedetail.avl_mobile %></td>
@@ -72,7 +83,6 @@
             <td><%= leavedetail.leavedetail_role%></td>
             <td>
               <%= select_tag "current_status", options_from_collection_for_select( leave_status, 'id', 'name'), id: "#{leavedetail.id}" %>
-           
             </td> 
 
             <%= hidden_field_tag 'leave_detail_id', leavedetail.id, id: "#{leavedetail.id}",class: "hello" %>

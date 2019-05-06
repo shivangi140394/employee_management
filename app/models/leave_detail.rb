@@ -1,7 +1,9 @@
 class LeaveDetail < ApplicationRecord
   belongs_to :employee
-  belongs_to :leave_type
+  has_one :leave_status
+  has_one :leave_type
   belongs_to :leave_status
+  belongs_to :leave_type
 
   validates :absent_to, :absent_from, :leave_apply_for_days, presence: true
 

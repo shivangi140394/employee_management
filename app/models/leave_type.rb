@@ -1,4 +1,4 @@
 class LeaveType < ApplicationRecord
-  has_many :leave_details
+  belongs_to :leave_detail
   validates_uniqueness_of :name, dependent: :destroy
 end

@@ -11,6 +11,7 @@ class Employee < ApplicationRecord
   has_one :bank_detail, dependent: :destroy
   belongs_to :role
   belongs_to :designation
+  belongs_to :leave_details
 
   # attr_accessor :email, :password, :password_confirmation, :role_attributes, :designation_attributes
   # accepts_nested_attributes_for :role, :designation
