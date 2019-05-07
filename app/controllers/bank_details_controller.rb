@@ -1,7 +1,7 @@
 class BankDetailsController < ApplicationController
 
   def show
-    @bank_detail = BankDetail.find_by(params[:id])
+    @bank_detail = current_employee.bank_detail
   end
 
   def new

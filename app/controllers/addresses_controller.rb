@@ -1,7 +1,7 @@
 class AddressesController < ApplicationController
     
   def show
-    @address = Address.find_by(params[:id])
+    @address = current_employee.address
   end
 
   def new
@@ -18,7 +18,7 @@ class AddressesController < ApplicationController
   end
 
   def update
-     @address = current_employee.create_address(address_params)
+    @address = current_employee.create_address(address_params)
   end
 
   private

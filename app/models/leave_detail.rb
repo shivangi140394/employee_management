@@ -1,10 +1,10 @@
 class LeaveDetail < ApplicationRecord
   belongs_to :employee
-  has_one :leave_status
-  has_one :leave_type
+  # has_one :leave_status
+  # has_one :leave_type
   belongs_to :leave_status
   belongs_to :leave_type
-
+  
   validates :absent_to, :absent_from, :leave_apply_for_days, presence: true
 
   validates :avl_mobile,   :presence => {:message => 'hello world, bad operation!'},

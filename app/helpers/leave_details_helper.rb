@@ -8,15 +8,14 @@ module LeaveDetailsHelper
      @leave_status = LeaveStatus.find_by_id(id)
      @leave_status.name
      if @leave_status.name == "declined"
-      return  "red"
+      content_tag(:div, content_tag(:p, "Declined"), class: "red")
     elsif @leave_status.name == "pending"
-      return "blue"
+      content_tag(:div, content_tag(:p, "Pending"), class: "blue")
     elsif @leave_status.name == "approved"
-      return "green"
+      content_tag(:div, content_tag(:p, "Approved"), class: "green")
     else
       return false
     end
-    @leave_status.html_safe
   end
 
   def current_employee_role_is_admin
