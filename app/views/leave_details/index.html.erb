@@ -50,7 +50,7 @@
             <td><%= leavedetail.absent_to %></td>
             <td><%= leavedetail.absent_from %></td>
             <td><%= leavedetail.reason_of_leave %></td> 
-            <td><%= leave_status_name(leavedetail.leave_status_id) %></td> 
+            <td><%= leave_update_status(leavedetail.leave_status_id) %></td> 
             <td><%= leavedetail.leave_apply_for_days %></td> 
             <td><%= leavedetail.work_affect %></td>
             <td><%= leavedetail.avl_mobile %></td>
@@ -60,19 +60,7 @@
             <td><%= leavedetail.absent_to %></td>
             <td><%= leavedetail.absent_from %></td>
             <td><%= leavedetail.reason_of_leave %></td> 
-
             <td>
-            <%#= leave_status_name(leavedetail.leave_status_id) %>
-            <%# if leavedetail.leave_status.name == "declined" %>
-               <!--  <div class="red">declined
-                </div>
-            <%# elsif leavedetail.leave_status.name == "pending" %>
-                <div class = "blue">pending
-                </div>
-            <%# else leavedetail.leave_status.name == "approved" %> 
-                <div class = "green">approved
-                </div>         -->
-            <%# end %>
             <%=  leave_update_status(leavedetail.leave_status_id) %>
             </td> 
             <td><%= leavedetail.leave_apply_for_days %></td> 
@@ -106,7 +94,7 @@
             <td><%= leavedetail.absent_to %></td>
             <td><%= leavedetail.absent_from %></td>
             <td><%= leavedetail.reason_of_leave %></td> 
-            <td><%= leave_status_name(leavedetail.leave_status_id) %></td> 
+            <td><%= leave_update_status(leavedetail.leave_status_id) %></td> 
             <td><%= leavedetail.leave_apply_for_days %></td> 
             <td><%= leavedetail.work_affect %></td>
             <td><%= leavedetail.avl_mobile %></td>
@@ -117,7 +105,7 @@
               <td><%= leavedetail.absent_to %></td>
               <td><%= leavedetail.absent_from %></td>
               <td><%= leavedetail.reason_of_leave %></td> 
-              <td><%= leave_status_name(leavedetail.leave_status_id) %></td> 
+              <td><%= leave_update_status(leavedetail.leave_status_id) %></td>  
               <td><%= leavedetail.leave_apply_for_days %></td> 
               <td><%= leavedetail.work_affect %></td>
               <td><%= leavedetail.avl_mobile %></td>
@@ -151,7 +139,7 @@
               <td><%= leavedetail.absent_to %></td>
               <td><%= leavedetail.absent_from %></td>
               <td><%= leavedetail.reason_of_leave %></td> 
-              <td><%= leave_status_name(leavedetail.leave_status_id) %></td> 
+              <td><%= leave_update_status(leavedetail.leave_status_id) %></td> 
               <td><%= leavedetail.leave_apply_for_days %></td> 
               <td><%= leavedetail.work_affect %></td>
               <td><%= leavedetail.avl_mobile %></td>

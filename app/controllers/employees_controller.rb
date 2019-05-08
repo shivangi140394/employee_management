@@ -7,7 +7,7 @@ class EmployeesController < ApplicationController
   end
   
   def show
-     if current_employee.admin? || current_employee.hr? || current_employee.id == params[:id].to_i
+    if current_employee.admin? || current_employee.hr? || current_employee.id == params[:id].to_i
       @employee = Employee.find(params[:id])
     else
       @employee = current_employee
@@ -40,25 +40,22 @@ class EmployeesController < ApplicationController
   end
 
   def update
-    @employee = Employee.find(params[:id])
+    # @employee = Employee.find(params[:id])
     # @professional_detail = @employee.create_professional_detail(professional_detail_attributes_params)
     # @professional_detail.images.create(professional_detail_params)
     if current_employee.update_with_password(allowed_params)
       bypass_sign_in current_employee
       flash[:notice] = 'Password updated.'
       redirect_to root_path
-    # if @employee.update(new_employee_params) 
-    #    flash[:success] = "You have successfully apply for leave!" 
-    #    redirect_to root_path
     else
-      flash[:danger] = @employee.errors.full_messages
+      flash[:danger] = current_employee.errors.full_messages
       render 'edit'
     end 
   end
 
   def destroy
     @employee = Employee.find(params[:id])
-    @employee.destroy
+    current_employee.destroy
     redirect_to root_path
   end
 

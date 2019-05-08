@@ -5,35 +5,22 @@ class Ability
 
   def initialize(employee)
     employee ||= Employee.new # guest user (not logged in)
-    # if employee.admin?
-    #   can :manage, :all
-
-    # elsif employee.hr?
-    #   can :manage, :all
-
     if employee.lead?
-      can [:read, :create, :show, :show_traniee, :update], :all
-    # elsif employee.hr?
-    #   can [:manage, :create, :show, :show_hr_leave], :all 
+      can [:show], Employee
+      can [:show_traniee], :all
+      can [:create, :read], LeaveDetail
+    elsif employee.admin?
+      can :manage, :all
+    elsif employee.employee?
+      can [:update, :show], Employee
+      can [:create, :edit], Address
+      can [:create, :edit], BankDetail
+      can [:create, :read], LeaveDetail
+    elsif employee.hr?
+      can [:manage, :create], :all
+      can [:show_hr_leave], LeaveDetail
+    else
+      cannot :manage, :all
     end
-    # elsif employee.employee?
-      # can [:update]
-      can :manage, :all if employee.admin?
-      can :update, Employee
-      can :create, LeaveDetail if employee.employee?
-      can :create, Address
-      can :create, BankDetail
-      can :edit, Address
-      can :edit, BankDetail
-      can :read, LeaveDetail
-      can :show, :all if employee.employee?
-      # can :read, :all if employee.lead?
-      # can :create, :all if employee.lead?
-      # can :show, LeaveDetail if employee.lead?
-      # can :show_traniee, LeaveDetail if employee.lead?
-
-      can :manage, :all if employee.hr?
-      can :create, :all if employee.hr?
-      can :show_hr_leave, LeaveDetail if employee.hr?
   end
 end
