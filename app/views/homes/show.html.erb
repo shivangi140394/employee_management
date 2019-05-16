@@ -1,0 +1,25 @@
+<%#= link_to 'All posts',  employee_homes_path %>
+<h1><%#= @home.title %></h1>
+ 
+<%#= image_tag(@home.image.url, alt: 'Image') if @home.image? %>
+ 
+<p><%#= @home.body %></p>
+ 
+<p><%#= link_to 'Edit',  edit_employee_home_path(@home) %></p>
+
+
+
+
+<div id="imagess">
+  <% @home.images.each do |image| %>
+    <div class="image">
+      <%= image_tag home.image_url.to_s %>
+      <div class="name"><%= image.name %></div>
+      <div class="actions">
+        <%= link_to "edit", edit_employee_home_path(home) %> |
+        <%= link_to "remove", home, :confirm => 'Are you sure?', :method => :delete %>
+      </div>
+    </div>
+  <% end %>
+  <div class="clear"></div>
+</div>

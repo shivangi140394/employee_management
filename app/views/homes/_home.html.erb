@@ -1,0 +1,6 @@
+<h2><%= link_to home.title, employee_homes_path(home) %></h2>
+ 
+<p><%= truncate(home.body, length: 150) %></p>
+ 
+<p><%= link_to 'Edit', edit_employee_home_path(home) %></p>
+<hr>

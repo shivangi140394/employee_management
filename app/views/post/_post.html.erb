@@ -1,0 +1,6 @@
+<h2><%= link_to post.title, employee_post_path(post) %></h2>
+ 
+<p><%= truncate(post.body, length: 150) %></p>
+ 
+<p><%= link_to 'Edit', edit_employee_post(post) %></p>
+<hr>

@@ -6,6 +6,7 @@ class Employee < ApplicationRecord
   devise :database_authenticatable,
          :recoverable, :rememberable, :validatable
   has_one :address, dependent: :destroy
+  has_many :homes, dependent: :destroy
   has_many :leave_details,  dependent: :destroy
   has_one :professional_detail, dependent: :destroy
   has_one :bank_detail, dependent: :destroy

@@ -1,0 +1,8 @@
+<%= link_to 'All posts', home_path %>
+<h1><%= @home.title %></h1>
+ 
+<%= image_tag(@home.image.url, alt: 'Image') if @home.image? %>
+ 
+<p><%= @home.body %></p>
+ 
+<p><%= link_to 'Edit', edit_employee_home_path(@home) %></p>

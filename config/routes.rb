@@ -4,11 +4,12 @@ Rails.application.routes.draw do
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routin g.html
 
   
-  root to: "home#index"
+  root to: "homes#index"
   
   resources :employees do
     resource :address  #:professional_details
     resource :bank_detail
+    resources :homes
     resource :roles, :designations 
     get :create_address, on: :member
     collection do
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
       post 'send_email'
     end
   end
+  
 
   resources :leave_details  do
     get :show_traniee, on: :collection

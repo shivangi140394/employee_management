@@ -41,6 +41,7 @@ gem 'devise'
 gem "twitter-bootstrap-rails"
 gem 'pry'
 gem 'carrierwave', '~> 1.0'
+gem 'mini_magick'
 gem "cocoon"
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.3.1'
